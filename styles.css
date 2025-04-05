@@ -6,8 +6,9 @@
   }
   
   .logo {
-    width: 20px; /* or whatever size you want */
+    width: 60px; /* or whatever size you want */
     height: auto;
+    gap: 10px;
 }
 
 
