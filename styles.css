@@ -1,0 +1,118 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .logo {
+    width: 20px; /* or whatever size you want */
+    height: auto;
+}
+
+
+  /* Body styles */
+  body {
+    font-family: 'Arial', sans-serif; /* Sets a clean, readable font */
+    background-color: #f4f4f4;       /* Light gray background */
+    color: #333;                      /* Dark text color for better readability */
+    line-height: 1.6;                 /* Adds some space between lines of text */
+    padding: 20px;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #333;          /* Dark background for header */
+    color: #fff;                     /* White text for contrast */
+    text-align: center;               /* Center the text */
+    padding: 20px 0;
+  }
+  
+  header h1 {
+    font-size: 2.5em;                 /* Make header text larger */
+  }
+  
+  /* Navigation styles (if you have a menu) */
+  nav {
+    display: flex;
+    justify-content: center;
+    background-color: #007BFF;        /* Blue background for the nav */
+    padding: 10px;
+  }
+  
+  nav a {
+    color: white;                     /* White text for nav links */
+    text-decoration: none;             /* Remove underline from links */
+    padding: 10px 20px;
+    margin: 0 15px;                   /* Space between links */
+    font-size: 1.2em;
+  }
+  
+  nav a:hover {
+    background-color: #0056b3;        /* Darker blue when hovering */
+    border-radius: 5px;                /* Rounded corners for a smooth look */
+  }
+  
+  /* Main content area */
+  main {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;           /* White background for content */
+    border-radius: 10px;              /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow around the content */
+  }
+  
+  /* Styling for links */
+  a {
+    color: #007BFF;                   /* Blue color for links */
+    text-decoration: none;             /* Remove underlines */
+  }
+  
+  a:hover {
+    text-decoration: underline;        /* Underline on hover */
+  }
+  
+  /* Button styling */
+  .resume-button {
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .resume-button:hover {
+    background-color: #0056b3;        /* Darker blue on hover */
+  }
+  
+  /* Footer styles */
+  footer {
+    background-color: #333;           /* Dark background for footer */
+    color: white;                     /* White text in footer */
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  /* Responsive Design - Make it look good on smaller screens */
+  @media screen and (max-width: 768px) {
+    nav {
+      flex-direction: column;         /* Stack the nav items vertically */
+      align-items: center;
+    }
+  
+    nav a {
+      margin: 10px 0;                 /* Add space between links when stacked */
+    }
+  
+    .resume-button {
+      width: 100%;                    /* Make the button full width on small screens */
+      padding: 20px;
+    }
+  }
+  
