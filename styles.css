@@ -77,7 +77,7 @@
   .resume-button {
     display: inline-block;
     padding: 15px 25px;
-    background-color: #007BFF;
+    background-color: #091c2e;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -115,5 +115,58 @@
       width: 100%;                    /* Make the button full width on small screens */
       padding: 20px;
     }
+  }
+  
+  .project-card img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  /* Projects section styling */
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+  }
+  
+  .project-card {
+    background-color: #0c0c0c;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .project-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .project-card h2 {
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  
+  .project-card p {
+    color: #cccccc;
+    margin-bottom: 15px;
+  }
+  
+  .project-card a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #161f29;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .project-card a:hover {
+    background-color: #364453;
   }
   
