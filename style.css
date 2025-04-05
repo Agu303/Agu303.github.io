@@ -5,6 +5,12 @@
     box-sizing: border-box;
   }
   
+  .logo {
+    width: 80px; /* or whatever size you want */
+    height: auto;
+}
+
+
   /* Body styles */
   body {
     font-family: 'Arial', sans-serif; /* Sets a clean, readable font */
