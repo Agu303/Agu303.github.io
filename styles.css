@@ -15,7 +15,7 @@
   /* Body styles */
   body {
     font-family: 'Arial', sans-serif; /* Sets a clean, readable font */
-    background-color: #f4f4f4;       /* Light gray background */
+    background-color: #1a1818;       /*  gray background */
     color: #333;                      /* Dark text color for better readability */
     line-height: 1.6;                 /* Adds some space between lines of text */
     padding: 20px;
@@ -92,7 +92,7 @@
   /* Footer styles */
   footer {
     background-color: #333;           /* Dark background for footer */
-    color: white;                     /* White text in footer */
+    color: rgb(29, 27, 27);                     /* White text in footer */
     text-align: center;
     padding: 10px 0;
     position: fixed;
