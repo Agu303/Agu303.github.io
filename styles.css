@@ -23,8 +23,8 @@
   
   /* Header styles */
   header {
-    background-color: #333;          /* Dark background for header */
-    color: #fff;                     /* White text for contrast */
+    background-color: #0c0c0c;          /* Dark background for header */
+    color: #ffffff;                     /* White text for contrast */
     text-align: center;               /* Center the text */
     padding: 20px 0;
   }
@@ -37,7 +37,7 @@
   nav {
     display: flex;
     justify-content: center;
-    background-color: #007BFF;        /* Blue background for the nav */
+    background-color: #161f29;        /* Blue background for the nav */
     padding: 10px;
   }
   
@@ -50,7 +50,7 @@
   }
   
   nav a:hover {
-    background-color: #0056b3;        /* Darker blue when hovering */
+    background-color: #364453;        /* Darker blue when hovering */
     border-radius: 5px;                /* Rounded corners for a smooth look */
   }
   
@@ -58,14 +58,14 @@
   main {
     margin-top: 20px;
     padding: 20px;
-    background-color: #fff;           /* White background for content */
+    background-color: #080808;           /* black background for content */
     border-radius: 10px;              /* Rounded corners */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow around the content */
   }
   
   /* Styling for links */
   a {
-    color: #007BFF;                   /* Blue color for links */
+    color: #330e4d;                   /* purp color for links */
     text-decoration: none;             /* Remove underlines */
   }
   
@@ -86,7 +86,7 @@
   }
   
   .resume-button:hover {
-    background-color: #0056b3;        /* Darker blue on hover */
+    background-color: #040f1b;        /* Darker blue on hover */
   }
   
   /* Footer styles */
