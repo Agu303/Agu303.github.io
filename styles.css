@@ -189,3 +189,61 @@
     background-color: #364453;
   }
   
+  /* About section styling */
+  .about {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .about-card {
+    background-color: #0c0c0c;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+
+  .profile-pic {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .about-content {
+    flex: 1;
+  }
+
+  .about-content p {
+    color: #cccccc;
+    line-height: 1.8;
+    font-size: 1.1em;
+  }
+
+  .about-content a {
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px solid #ffffff;
+    transition: opacity 0.3s ease;
+  }
+
+  .about-content a:hover {
+    opacity: 0.8;
+  }
+
+  @media screen and (max-width: 768px) {
+    .about-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .profile-pic {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+  
