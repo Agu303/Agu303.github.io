@@ -23,14 +23,28 @@
   
   /* Header styles */
   header {
-    background-color: #0c0c0c;          /* Dark background for header */
-    color: #ffffff;                     /* White text for contrast */
-    text-align: center;               /* Center the text */
-    padding: 20px 0;
+    background-color: #0c0c0c;
+    color: #ffffff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-name {
+    display: flex;
+    align-items: center;
+    gap: 15px;
   }
   
+  .logo {
+    width: 60px;
+    height: auto;
+  }
+
   header h1 {
-    font-size: 2.5em;                 /* Make header text larger */
+    font-size: 2.5em;
+    margin: 0;
   }
   
   /* Navigation styles */
