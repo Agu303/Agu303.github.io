@@ -273,3 +273,8 @@ footer {
     max-width: 300px;
   }
 }
+
+/* global h2 center aligns for main and project cards */
+h2 {
+  text-align: center;
+}
