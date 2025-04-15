@@ -146,12 +146,13 @@
   
   /* Projects section styling */
   .projects {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     padding: 20px;
+    justify-items: center;
   }
+  
   
   
   .project-card {
@@ -215,14 +216,14 @@
     }
   }
   
-  @media screen and (min-width: 768px) and (max-width: 1199px) {
+  @media screen and (min-width: 900px) and (max-width: 1199px) {
     .projects {
         grid-template-columns: repeat(2, 1fr);
         justify-items: center;
     }
   }
   
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 900px) {
     .projects {
         grid-template-columns: 1fr;
         justify-items: center;
