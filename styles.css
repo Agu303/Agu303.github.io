@@ -147,8 +147,8 @@ footer {
 
 /* Projects section styling */
 .projects {
-  display: flex;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: grid;  
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ensures responsive columns */
   gap: 30px;
   padding: 20px;
   max-width: 1200px;
