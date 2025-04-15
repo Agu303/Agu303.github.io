@@ -54,27 +54,29 @@ a {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 20px; /* Adds spacing between project cards */
 }
 
 /* Individual project box styling */
 .project {
   background-color: #fafafa; /* Light background for projects */
-  margin: 15px;
-  width: 825px;
   padding: 20px;
   border-radius: 6px;
   box-shadow: 0 0 0px 5px #afafaf;
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
+  width: 100%; /* Full width on smaller screens */
+  max-width: 825px; /* Maximum width for larger screens */
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column; /* Stack title and description vertically */
+  gap: 10px; /* Add space between title and description */
 }
 
-/* Project name styling */
+/* Project name styling (title) */
 .project .name {
   font-size: 25px;
   padding-bottom: 6px;
   font-weight: bold;
+  text-align: center; /* Center the title */
 }
 
 /* Project description styling */
@@ -91,10 +93,10 @@ a {
 
 /* Project image and iframe styling */
 .project img {
-  float: left;
   width: auto;
   height: 275px;
-  margin-right: 20px;
+  margin-bottom: 20px; /* Space between image and text */
+  border-radius: 6px;
 }
 
 .project img.real {
@@ -122,8 +124,7 @@ a {
 }
 
 .project iframe {
-  float: left;
-  margin-right: 20px;
+  margin-bottom: 20px;
   border-radius: 6px;
 }
 
@@ -151,31 +152,25 @@ a {
 
 /* Responsive Design for smaller screens */
 @media screen and (max-width: 768px) {
-  /* Stack the projects */
-  .projects {
-    flex-direction: column;
-  }
-
+  /* Adjust project cards width for smaller screens */
   .project {
-    width: 100%; /* Make projects fill available width */
+    width: 100%; /* Full width */
   }
   
   .header {
     width: 100%;
     text-align: center;
   }
-  
-  /* Button full width on small screens */
-  .resume-button {
-    width: 100%;
-    padding: 20px;
-  }
 }
 
+/* Add some spacing for medium to large screens */
 @media screen and (min-width: 900px) {
-  /* Add some spacing for medium to large screens */
   .projects {
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
+  }
+
+  .project {
+    width: 45%; /* Two cards per row */
   }
 }
