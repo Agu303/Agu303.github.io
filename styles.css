@@ -1,176 +1,275 @@
-/* General body styling */
-body {
-  background-color: #ff9a56; /* Original background color */
-  font-family: 'Arial', sans-serif; /* Default font */
-  color: #333; /* Dark text for readability */
-  line-height: 1.6;
-  padding: 20px;
-}
-
-/* Remove underline from links */
-a {
-  text-decoration: none;
-}
-
-/* Box container with background and shadow */
-.box, .header, .project, .separatorBox {
-  margin: auto;
-  padding: 10px;
-  text-align: center;
-  background-color: #fafafa; /* Light background */
-  border-radius: 6px;
-  font-family: 'Libre Franklin', sans-serif;
-  box-shadow: 0 0 0px 5px #afafaf;
-}
-
-/* Header section with larger size */
-.header {
-  width: 800px;
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-/* Name and bio in header */
-.header .name {
-  font-size: 75px;
-  margin-bottom: 0;
-  font-weight: bold;
-}
-
-.header .shortBio {
-  font-size: 24px;
-  margin-bottom: 0;
-}
-
-/* Navigation styling for the header */
-.header a {
-  padding: 10px;
-  font-size: 24px;
-}
-
-/* Project display styling */
-.projects {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px; /* Adds spacing between project cards */
-}
-
-/* Individual project box styling */
-.project {
-  background-color: #fafafa; /* Light background for projects */
-  padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0 0 0px 5px #afafaf;
-  width: 100%; /* Full width on smaller screens */
-  max-width: 825px; /* Maximum width for larger screens */
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column; /* Stack title and description vertically */
-  gap: 10px; /* Add space between title and description */
 }
 
-/* Project name styling (title) */
-.project .name {
-  font-size: 25px;
-  padding-bottom: 6px;
-  font-weight: bold;
-  text-align: center; /* Center the title */
-}
-
-/* Project description styling */
-.project .description {
-  padding: 5px;
-  text-align: left;
-  font-size: 18px;
-}
-
-/* Project link styling */
-.project a {
-  margin: 10px;
-}
-
-/* Project image and iframe styling */
-.project img {
-  width: auto;
-  height: 275px;
-  margin-bottom: 20px; /* Space between image and text */
-  border-radius: 6px;
-}
-
-.project img.real {
-  border-radius: 6px;
-}
-
-.project img.centered {
-  float: none;
+.logo {
+  width: 60px; /* or whatever size you want */
   height: auto;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  gap: 10px;
 }
 
-.project img.centered.halfWidth {
-  max-width: 45%;
+
+/* Body styles */
+body {
+  font-family: 'Arial', sans-serif; /* Sets a clean, readable font */
+  background-color: #1a1818;       /*  gray background */
+  color: #333;                      /* Dark text color for better readability */
+  line-height: 1.6;                 /* Adds some space between lines of text */
+  padding: 20px;
 }
 
-.project img.centered.thirdWidth {
-  max-width: 30%;
+/* Header styles */
+header {
+  background-color: #0c0c0c;
+  color: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
-.project img.centered.single {
-  max-height: 300px;
-  max-width: 90%;
+.logo-name {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
 }
 
-.project iframe {
-  margin-bottom: 20px;
-  border-radius: 6px;
+.logo {
+  width: 60px;
+  height: auto;
 }
 
-/* Styling for project lists */
-.project ul {
-  padding-left: 400px;
+header h1 {
+  font-size: 2.5em;
+  margin: 0;
 }
 
-.project ul.aboutList {
-  padding-left: inherit;
-  text-align: left;
+/* Navigation styles */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #161f29;
+  padding: 10px 20px;
+  gap: 20px;
+  border-radius: 5px;
 }
 
-/* Separator box styling */
-.separatorBox {
-  width: 825px;
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #364453;        /* Darker blue when hovering */
+  border-radius: 5px;                /* Rounded corners for a smooth look */
+}
+
+/* Main content area */
+main {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #080808;           /* black background for content */
+  border-radius: 10px;              /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow around the content */
+}
+
+/* Styling for links */
+a {
+  color: #330e4d;                   /* purp color for links */
+  text-decoration: none;             /* Remove underlines */
+}
+
+a:hover {
+  text-decoration: underline;        /* Underline on hover */
+}
+
+/* Button styling */
+.resume-button {
+  display: inline-block;
+  padding: 15px 25px;
+  background-color: #091c2e;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
   margin-top: 20px;
 }
 
-.separatorBox .name {
-  font-size: 25px;
-  padding-bottom: 6px;
-  font-weight: bold;
+.resume-button:hover {
+  background-color: #040f1b;        /* Darker blue on hover */
 }
 
-/* Responsive Design for smaller screens */
+/* Footer styles */
+footer {
+  background-color: #333;           /* Dark background for footer */
+  color: rgb(29, 27, 27);                     /* White text in footer */
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Responsive Design - Make it look good on smaller screens */
 @media screen and (max-width: 768px) {
-  /* Adjust project cards width for smaller screens */
-  .project {
-    width: 100%; /* Full width */
+  nav {
+    flex-direction: column;         /* Stack the nav items vertically */
+    align-items: center;
   }
-  
-  .header {
-    width: 100%;
+
+  nav a {
+    margin: 10px 0;                 /* Add space between links when stacked */
+  }
+
+  .resume-button {
+    width: 100%;                    /* Make the button full width on small screens */
+    padding: 20px;
+  }
+}
+
+.project-card img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Projects section styling */
+.projects {
+  display: flex;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.project-card {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #0c0c0c;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card h2 {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  color: #cccccc;
+  margin-bottom: 15px;
+}
+
+.project-card a {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #161f29;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.project-card a:hover {
+  background-color: #364453;
+}
+
+@media screen and (min-width: 1200px) {
+  .projects {
+      grid-template-columns: repeat(3, 1fr);
+      justify-items: center;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .projects {
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: center;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .projects {
+      grid-template-columns: 1fr;
+      justify-items: center;
+  }
+}
+
+/* About section styling */
+.about {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-card {
+  background-color: #0c0c0c;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.profile-pic {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.about-content {
+  flex: 1;
+}
+
+.about-content p {
+  color: #cccccc;
+  line-height: 1.8;
+  font-size: 1.1em;
+}
+
+.about-content a {
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 1px solid #ffffff;
+  transition: opacity 0.3s ease;
+}
+
+.about-content a:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 768px) {
+  .about-card {
+    flex-direction: column;
+    align-items: center;
     text-align: center;
   }
-}
 
-/* Add some spacing for medium to large screens */
-@media screen and (min-width: 900px) {
-  .projects {
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
-  }
-
-  .project {
-    width: 45%; /* Two cards per row */
+  .profile-pic {
+    width: 100%;
+    max-width: 300px;
   }
 }
