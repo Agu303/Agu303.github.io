@@ -1,290 +1,181 @@
-/* Reset some default styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  .logo {
-    width: 60px; /* or whatever size you want */
-    height: auto;
-    gap: 10px;
+/* General body styling */
+body {
+  background-color: #ff9a56; /* Original background color */
+  font-family: 'Arial', sans-serif; /* Default font */
+  color: #333; /* Dark text for readability */
+  line-height: 1.6;
+  padding: 20px;
 }
 
+/* Remove underline from links */
+a {
+  text-decoration: none;
+}
 
-  /* Body styles */
-  body {
-    font-family: 'Arial', sans-serif; /* Sets a clean, readable font */
-    background-color: #1a1818;       /*  gray background */
-    color: #333;                      /* Dark text color for better readability */
-    line-height: 1.6;                 /* Adds some space between lines of text */
-    padding: 20px;
-  }
-  
-  /* Header styles */
-  header {
-    background-color: #0c0c0c;
-    color: #ffffff;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
+/* Box container with background and shadow */
+.box, .header, .project, .separatorBox {
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  background-color: #fafafa; /* Light background */
+  border-radius: 6px;
+  font-family: 'Libre Franklin', sans-serif;
+  box-shadow: 0 0 0px 5px #afafaf;
+}
 
-  .logo-name {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    justify-content: center;
-  }
-  
-  .logo {
-    width: 60px;
-    height: auto;
-  }
+/* Header section with larger size */
+.header {
+  width: 800px;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
 
-  header h1 {
-    font-size: 2.5em;
-    margin: 0;
-  }
-  
-  /* Navigation styles */
-  nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #161f29;
-    padding: 10px 20px;
-    gap: 20px;
-    border-radius: 5px;
-  }
-  
-  nav a {
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    transition: background-color 0.3s ease;
-  }
-  
-  nav a:hover {
-    background-color: #364453;        /* Darker blue when hovering */
-    border-radius: 5px;                /* Rounded corners for a smooth look */
-  }
-  
-  /* Main content area */
-  main {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #080808;           /* black background for content */
-    border-radius: 10px;              /* Rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow around the content */
-  }
-  
-  /* Styling for links */
-  a {
-    color: #330e4d;                   /* purp color for links */
-    text-decoration: none;             /* Remove underlines */
-  }
-  
-  a:hover {
-    text-decoration: underline;        /* Underline on hover */
-  }
-  
-  /* Button styling */
-  .resume-button {
-    display: inline-block;
-    padding: 15px 25px;
-    background-color: #091c2e;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-top: 20px;
-  }
-  
-  .resume-button:hover {
-    background-color: #040f1b;        /* Darker blue on hover */
-  }
-  
-  /* Footer styles */
-  footer {
-    background-color: #333;           /* Dark background for footer */
-    color: rgb(29, 27, 27);                     /* White text in footer */
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-  
-  /* Responsive Design - Make it look good on smaller screens */
-  @media screen and (max-width: 768px) {
-    nav {
-      flex-direction: column;         /* Stack the nav items vertically */
-      align-items: center;
-    }
-  
-    nav a {
-      margin: 10px 0;                 /* Add space between links when stacked */
-    }
-  
-    .resume-button {
-      width: 100%;                    /* Make the button full width on small screens */
-      padding: 20px;
-    }
-  }
-  
-  .project-card img {
-    width: 300px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    flex-shrink: 0;
-  }
-  
-  /* Projects section styling */
+/* Name and bio in header */
+.header .name {
+  font-size: 75px;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.header .shortBio {
+  font-size: 24px;
+  margin-bottom: 0;
+}
+
+/* Navigation styling for the header */
+.header a {
+  padding: 10px;
+  font-size: 24px;
+}
+
+/* Project display styling */
+.projects {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Individual project box styling */
+.project {
+  background-color: #fafafa; /* Light background for projects */
+  margin: 15px;
+  width: 825px;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 0px 5px #afafaf;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* Project name styling */
+.project .name {
+  font-size: 25px;
+  padding-bottom: 6px;
+  font-weight: bold;
+}
+
+/* Project description styling */
+.project .description {
+  padding: 5px;
+  text-align: left;
+  font-size: 18px;
+}
+
+/* Project link styling */
+.project a {
+  margin: 10px;
+}
+
+/* Project image and iframe styling */
+.project img {
+  float: left;
+  width: auto;
+  height: 275px;
+  margin-right: 20px;
+}
+
+.project img.real {
+  border-radius: 6px;
+}
+
+.project img.centered {
+  float: none;
+  height: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.project img.centered.halfWidth {
+  max-width: 45%;
+}
+
+.project img.centered.thirdWidth {
+  max-width: 30%;
+}
+
+.project img.centered.single {
+  max-height: 300px;
+  max-width: 90%;
+}
+
+.project iframe {
+  float: left;
+  margin-right: 20px;
+  border-radius: 6px;
+}
+
+/* Styling for project lists */
+.project ul {
+  padding-left: 400px;
+}
+
+.project ul.aboutList {
+  padding-left: inherit;
+  text-align: left;
+}
+
+/* Separator box styling */
+.separatorBox {
+  width: 825px;
+  margin-top: 20px;
+}
+
+.separatorBox .name {
+  font-size: 25px;
+  padding-bottom: 6px;
+  font-weight: bold;
+}
+
+/* Responsive Design for smaller screens */
+@media screen and (max-width: 768px) {
+  /* Stack the projects */
   .projects {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    flex-direction: column;
+  }
+
+  .project {
+    width: 100%; /* Make projects fill available width */
+  }
+  
+  .header {
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Button full width on small screens */
+  .resume-button {
+    width: 100%;
     padding: 20px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  /* Add some spacing for medium to large screens */
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
     justify-items: center;
   }
-  
-  
-  
-  .project-card {
-    background-color: #121212;
-    color: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    width: 100%;
-    max-width: 550px;
-    box-sizing: border-box;
-    transition: transform 0.2s ease;
-  }
-  
-  .project-card:hover {
-    transform: scale(1.02);
-  }
-  
-  .project-card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .project-card h2 {
-    margin: 0 0 10px 0;
-    font-size: 1.5em;
-  }
-  
-  .project-card p {
-    margin: 0 0 10px 0;
-    line-height: 1.5;
-  }
-  
-  .project-card a {
-    display: inline-block;
-    margin-top: auto;
-    padding: 8px 16px;
-    background-color: #1e90ff;
-    color: white;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-  }
-  
-  .project-card a:hover {
-    background-color: #0077cc;
-  }
-  
-  /* Optional preload improvements if added to HTML */
-  img[loading="lazy"] {
-    content-visibility: auto;
-  }
-  
-  @media screen and (min-width: 1200px) {
-    .projects {
-        grid-template-columns: repeat(2, 1fr);
-        justify-items: center;
-    }
-  }
-  
-  @media screen and (min-width: 900px) and (max-width: 1199px) {
-    .projects {
-        grid-template-columns: repeat(2, 1fr);
-        justify-items: center;
-    }
-  }
-  
-  @media screen and (max-width: 900px) {
-    .projects {
-        grid-template-columns: 1fr;
-        justify-items: center;
-    }
-  }
-  
-  /* About section styling */
-  .about {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .about-card {
-    background-color: #0c0c0c;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    gap: 30px;
-    align-items: flex-start;
-  }
-
-  .profile-pic {
-    width: 300px;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
-  }
-
-  .about-content {
-    flex: 1;
-  }
-
-  .about-content p {
-    color: #cccccc;
-    line-height: 1.8;
-    font-size: 1.1em;
-  }
-
-  .about-content a {
-    color: #ffffff;
-    text-decoration: none;
-    border-bottom: 1px solid #ffffff;
-    transition: opacity 0.3s ease;
-  }
-
-  .about-content a:hover {
-    opacity: 0.8;
-  }
-
-  @media screen and (max-width: 768px) {
-    .about-card {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .profile-pic {
-      width: 100%;
-      max-width: 300px;
-    }
-  }
-  
+}
