@@ -274,7 +274,13 @@ footer {
   }
 }
 
-/* global h2 center aligns for main and project cards */
+/* global h2 and h3 center aligns for main and project cards */
 h2 {
   text-align: center;
+  color: #cccccc;
+}
+
+h3 {
+  text-align: center;
+  color: #cccccc;
 }
