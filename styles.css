@@ -14,7 +14,7 @@
 
 /* Body styles */
 body {
-  font-family: 'Arial', sans-serif; /* Sets a clean, readable font */
+  font-family: "Computer Modern Sans", sans-serif; /* Sets a clean, readable font */
   background-color: #1a1818;       /*  gray background */
   color: #333;                      /* Dark text color for better readability */
   line-height: 1.6;                 /* Adds some space between lines of text */
