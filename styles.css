@@ -40,6 +40,53 @@ header {
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* Header text styling */
+.header-text {
+  text-align: center;
+  margin-top: 20px;
+  z-index: 2;
+}
+
+.header-name {
+  font-size: 3.5em;
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.header-line {
+  width: 200px;
+  height: 2px;
+  background-color: #000000;
+  margin: 15px auto;
+}
+
+.header-title {
+  font-size: 2em;
+  color: #ffffff;
+  margin-top: 10px;
+  font-weight: normal;
+}
+
+/* Adjust the logo and nav positioning */
+.index-header .logo-link {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.index-header nav {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 /* Add a dark overlay to ensure text remains readable */
