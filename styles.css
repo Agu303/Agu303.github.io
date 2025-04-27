@@ -64,7 +64,8 @@ header {
 }
 
 .header-line {
-  width: 900px;
+  width: 80%;
+  max-width: 800px;
   height: 8px;
   background-color: #fafafa;
   margin: 20px auto;
