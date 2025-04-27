@@ -8,7 +8,12 @@
 </head>
 <body>
     <header>
-        <h1>Machine Learning Projects</h1>
+        <a href="../index.html" class="logo-link">
+            <div class="logo-name">
+                <img src="../images/logo.png" alt="Logo" class="logo">
+                <h2>Engineering Portfolio</h2>
+            </div>
+        </a>
         <nav>
             <a href="../index.html">Home</a> |
             <a href="../about.html">About</a> |
@@ -18,7 +23,7 @@
     </header>
 
     <section>
-        <h2 style="color: #ffffff;">Machine Learning Projects</h2>
+        <h1 style="color: #ffffff;">Machine Learning Projects</h2>
         <h3 style="color: #ffffff;">Ensemble ML for Mechanical Analysis</h3>
         <p style="color: #ffffff;">The objective of this project was to accurately predict stress values from the material interface properties and strain input dataset. Since there is a non-linear relationship in the stress-strain behavior, I built a methodology that is built around the selection and averaging of model output that can capture this kind of relationship.</p>
         <p style="color: #ffffff;">I selected ensemble-learning models (bagging and boosting) for this project (Inspired by lecture 24/25) to achieve better predictive performance than any one of the learners could do alone.  I chose random forest regressor (RF) and XGBoost (XGB) as bagging and boosting models, respectively.  I decided to go with an RF modeling since they are relatively easy to train and good against overfitting.  XGBoost was chosen, rather than the ADABoost, because it achieves better accuracy for structured numerical data since it is based on a Newton-Raphson method rather than gradient boosting like ADA.  This allows for faster convergence, better handling of curvature for loss, and improves accuracy.  By using both models, I believe that I can achieve robust and accurate results.</p>
