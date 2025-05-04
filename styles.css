@@ -53,6 +53,10 @@ header {
   z-index: 2;
   width: 100%;
   max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .header-name {
@@ -61,12 +65,15 @@ header {
   margin-bottom: 20px;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  width: 100%;
 }
 
 .header-line {
-  width: 300px;
-  height: 3px;
-  background-color: #000000;
+  width: 80%;
+  max-width: 800px;
+  height: 8px;
+  background-color: #fafafa;
   margin: 20px auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
@@ -77,6 +84,8 @@ header {
   margin-top: 20px;
   font-weight: normal;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  width: 100%;
 }
 
 /* Adjust the logo and nav positioning */
