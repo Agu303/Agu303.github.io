@@ -76,7 +76,7 @@
         <br>      
         <img src="../images/ork_rocket.png" alt="ORK" style="display: block; margin: 0 auto;">
         <br>
-
+        <br>
         <!-- analysis -->
         <h3 style="color:#ffffff;">| Analysis &amp; Verification</h3>
         <ul style="color:#ffffff;">
@@ -86,27 +86,47 @@
             <li><strong>Coupon tests</strong> – 8‑ply G12/Epoxy tensile &amp; shear coupons validate lamina inputs (±8 %).</li>
             <li><strong>Fin‑can rig</strong> – Custom screw‑jack fixture: 200 lbf compression / 150 lbf bending, 0.8 mm tip deflection.</li>
         </ul>
-
+        <br>
+        <br>
+        <!-- inser ORK Graph of Altitude v Time-->
         <!-- insert FEA picture here... -->
+        <!-- insert physical testing pictures/results here-->
 
 
-        <p style="color: #ffffff;"> Using flight simulation software such as OpenRocket, RockSim, and RASAero, we conduct aerodynamic modeling, trajectory prediction, and stability analysis to refine our design. 
-             Our team utilizes Solidworks to design the rocket's airframe, fins, bulkheads, and centering rings to ensure proper integration with propulsion,  avionics, and recovery systems. 
-              FEA is done with ANSYS to perform stress analysis to optimize material distribution and structural integrity.  The rocket's airframe consists of G12 fiberglass composite commercially
-               sourced for our design.  Future iterations will use an in-house prepreg layup process to achieve tailored mechanical properties.  Fins and bulkheads consist of G10 Fiberglass laminates 
-               that are CNC machined with a Water Jet cutter.  Centering rings are 3D printed with PETG filament.  Structural bonding is done with West Systems 105 epoxy/206 hardener and coupler tubes.  </p>
-
-        <br>    
-        <img src="../images/rocket_cad.png" alt="r_cad" style="display: block; margin: 0 auto;">
+        <img src="../images/rocket_cad.png" alt="Rocket CAD model" style="display:block;margin:2rem auto;max-width:640px;width:90%;">
         <br>
+        <h3 style="color:#ffffff;">|Design & Analysis Pipeline</h3>
+        <ol style="color:#ffffff;">
+            <li>CAD release →  DXF / STEP export via SolidWorks PDM.</li>
+            <li>Custom <em>ply‑book generator</em> (Python) outputs cut files &amp; cure schedules.</li>
+            <li>Wet lay‑up + vacuum bag for prototypes; migrating to prepreg out‑of‑autoclave cure in next cycle.</li>
+            <li>Bond‑line QA with dye penetrant and digital calipers (≤ 0.15 mm gap spec).</li>
+        </ol>
+        <br>
+        <img src="../images/struct_workflow.png" alt="Structural workflow diagram" style="display:block;margin:2rem auto;max-width:640px;width:90%;">
+        <br>
+        <br>
+        <h3 style="color:#ffffff;">| Integration &amp; Testing Milestones</h3>
+        <ul style="color:#ffffff;">
+            <li>Structural Critical Design Review – Jan 2025 (92 / 100&nbsp;ESRA score).</li>
+            <li>Fin‑can proof test – Apr 2025 (2 × aerodynamic design‑load).</li>
+            <li>Full‑stack fit‑check – May 2025.</li>
+            <li>Static fire &amp; Flight Readiness Review – June 2025.</li>
+        </ul>
+        <br>
+        <br>
+        <h3 style="color:#ffffff;">| Impact &amp; Lessons Learned</h3>
+        <p style="color:#ffffff;">
+            The composite‑analysis toolbox I built slashed laminate sizing time by 60 %, while our design‑for‑manufacture checklist is now used across propulsion and avionics.  
+            Most importantly, running design reviews as “teaching sprints” boosted team‑wide analytical intuition — raising quality faster than any solo effort.
+        </p>
+        <br>
+        <br>
+        <hr style="border:0;border-top:1px solid #666;margin:3rem 0;">
 
-        <p style="color: #ffffff;"> As one of the founding members of the Texas A&M IGNITORS Rocketry Team, I led the structural subsystem by establishing the design pipeline and assembly procedures for our launch vehicle.
-             I trained team members in CAD (SolidWorks), finite element analysis (ANSYS), and composite material modeling. This included instruction on Classical Lamination Theory (CLT), the Tsai-Wu failure
-              criterion, and additional failure frameworks used to predict laminate behavior under multiaxial loading. My contributions enabled the team to develop robust composite structures and laid the groundwork
-               for future design standardization and performance validation.</p>
-        <br>
-        <img src="../images/struct_workflow.png" alt="wrkf" style="display: block; margin: 0 auto;"> 
-        <br>
+        <p style="color:#ffffff;text-align:center;font-weight:bold;">
+            TL;DR – Led structures on a 10k ft hybrid rocket, validated 2.5 × SF composites, mentored 12 engineers, and will put the vehicle on the pad at IREC 2025.
+        </p>
 
         <hr style="border:0;border-top:1px solid #757575;margin:3rem 0;">
         </div>
