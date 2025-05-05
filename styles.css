@@ -445,9 +445,12 @@ h3 {
 
 ul {
   color: #ffffff;
-  font-size: 1.3rem;   /* ≈ 21 px if the root font is 16 px */
-  line-height: 1.4;    /* optional—gives larger text breathing room */
+  font-size: 1.3rem;
+  margin-left: 0;      /* remove default browser margin */
+  padding-left: 1.2rem;/* controlled indent for bullet & text */
+  line-height: 1.4;    
 }
+
 
 
 @media (max-width: 900px) {
