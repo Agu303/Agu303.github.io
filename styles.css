@@ -100,7 +100,9 @@ header {
   width: 100%;
 }
 
-/* Adjust the logo and nav positioning */
+
+/******************* background picture organization************** */
+
 .index-header .logo-link {
   position: absolute;
   top: 20px;
@@ -138,6 +140,39 @@ header {
   z-index: 2;
 }
 
+.sae-header .logo-link {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+/* Position the navigation in the top right for sae-header */
+.sae-header nav {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+/* Add the dark overlay for sae-header, similar to index-header */
+.sae-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+/* Ensure header content stays above the overlay */
+.sae-header > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* ******************************************************* */
 .logo-link {
   text-decoration: none;
   color: inherit;
