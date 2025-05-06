@@ -1,125 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="/favicon.ico" sizes="32x32" />
-  <title>Alvaro Guerra | Engineering Portfolio</title>
-
-  <!-- Computer Modern (optional) -->
-  <!-- <link rel="stylesheet" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css"> -->
-
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <title>Alvaro Guerra | Engineering Portfolio</title>
+    <!-- Add the Computer Modern font link here, before your own stylesheet -->
+    <!--<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css"> -->
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
-  <!-- ============================================================ -->
-  <!-- Hero header (home page)                                      -->
-  <!-- ============================================================ -->
-  <header class="page-header index-header">
+    <!-- Header Section -->
+    <header class="index-header">
+        <a href="index.html" class="logo-link">
+            <div class="logo-name">
+                <img src="./images/logo.png" alt="Logo" class="logo">
+                <h2>Engineering Portfolio</h2>
+            </div>
+        </a>
+        <nav>
+            <a href="projects/about.html">About</a>
+            <a href="files/Resume.pdf">Resume</a>
+            <a href="https://github.com/Agu303" target="_blank">Github</a>
+            <a href="https://youtube.com/" target="_blank">Youtube</a>
+        </nav>
+        <div class="header-text">
+            <h1 class="header-name">Alvaro Guerra</h1>
+            <div class="header-line"></div>
+            <h1 class="header-title">Project and Design Portfolio</h1>
+        </div>
+    </header>
 
-    <!-- logo -->
-    <a href="index.html" class="logo-link">
-      <div class="logo-name">
-        <img src="./images/logo.png" alt="Logo" class="logo" />
-        <h2>Engineering Portfolio</h2>
-      </div>
-    </a>
+    <!-- Projects Section -->
+    <section class="projects">
 
-    <!-- nav -->
-    <nav>
-      <a href="projects/about.html">About</a>
-      <a href="files/Resume.pdf">Resume</a>
-      <a href="https://github.com/Agu303" target="_blank" rel="noopener">Github</a>
-      <a href="https://youtube.com/" target="_blank" rel="noopener">Youtube</a>
-    </nav>
+        <div class="project-card">
+            <img src="images/ignitorsrocket.png" alt="Rocketry">
+            <h2>Rocketry</h2>
+            <p> I've become very interested in rocketry since my freshman year.  Since then I have worked on constructing rockets and analysis tools to for competition and L-certification launches.</p>
+            <a href="https://www.soundingrocket.org/">IREC Page</a>
+            <a href="projects/rocketry.html">Read More</a>
+        </div>
 
-    <!-- header text -->
-    <div class="header-text">
-      <h1 class="header-name">Alvaro Guerra</h1>
-      <div class="header-line"></div>
-      <h1 class="header-title">Project and Design Portfolio</h1>
-    </div>
-  </header>
+        <div class="project-card">
+            <img src="images/comp_plane.JPG" alt="Competition Plane">
+            <h2>SAE Aero Design</h2>
+            <p>I spent the entirety of my sophomore year working on structurally optimizing a plane for the Society of Automotive Engineers Aero Design competition.  This competition gives teams annually-updated design constraints and rules to build planes to carry payload.  The aircraft's structural framework was designed through topological optimization to minimize its own weight while maximizing the payload capacity it can support.  I mostly worked on the payload design and created manufacturing tools for fuselage, control surfaces, and the wing assembly.  My team took first place in the international competition, and details about our design can be found on A&M's newsletter and team website. </p>
+            <a href="https://engineering.tamu.edu/news/2023/06/texas-am-rallies-and-wins-at-international-design-competition.html">Texas A&M Newsletter</a>
+            <a href="https://www.tamusaeaero.org/">Team Site</a>
+            <a href="projects/sae.html">Read More</a>
+        </div>
 
+        <div class="project-card">
+            <img src="images/gcr.jpg" alt="GCR">
+            <h2>Garden Robot</h2>
+            <p>Modular robotic system capable of performing fertilizing and watering informed by sensor data collection and analysis.  This robot was designed to tread a long a 50-foot garden row with the goal of reducing physical strain associated with gardening maintenace through remote control.</p>
+            <a href="https://tamueps.secure-platform.com/students/organizations/main/home">Engineering Project Showcase</a>
+            <a href="projects/gcr.html">Read More</a>
+        </div>
 
-  <section class="projects">
+        <div class="project-card">
+            <img src="images/oL-logo.svg" alt="oL">
+            <h2>openLayup</h2>
+            <p>openLayup is an open-source, GUI-based structural simulation tool for aerospace structures. The software estimates key mechanical metrics such as stress, strain, and factor of safety based on material properties, ply layup configurations, and component geometries. It applies Classical Laminate Theory (CLT) and the Tsai-Wu failure criterion, enabling laminate-level failure-mode analysis across various aerospace components.</p>
+            <a href="projects/openLayup.html">Read More</a>
+            <a href="https://github.com/Agu303/openLayup" target="_blank">Github Repo</a>
+        </div>
 
-    <div class="project-card">
-      <img src="images/ignitorsrocket.png" alt="Rocketry" />
-      <h2>Rocketry</h2>
-      <p>
-        I've become very interested in rocketry since my freshman year. Since
-        then I have worked on constructing rockets and analysis tools for
-        competition and L‑certification launches.
-      </p>
-      <a href="https://www.soundingrocket.org/" target="_blank" rel="noopener">IREC Page</a>
-      <a href="projects/rocketry.html">Read More</a>
-    </div>
+        <div class="project-card">
+            <img src="images/BeamMeUp.png" alt="Beam">
+            <h2>BeamMeUpScotty</h2>
+            <p>2D structural analysis for trusses, beams, or frames.  Solves static equilibrium equations and matrices, visualizes structures/force diagrams/SF & BM graphs.</p>
+            <a href="https://github.com/Agu303/BeamMeUpScotty" target="_blank">Github Repo</a>
+        </div>
 
-    <div class="project-card">
-        <img src="images/comp_plane.JPG" alt="Competition Plane">
-        <h2>SAE Aero Design</h2>
-        <p>I spent the entirety of my sophomore year working on structurally optimizing a plane for the Society of Automotive Engineers Aero Design competition.  This competition gives teams annually-updated design constraints and rules to build planes to carry payload.  The aircraft's structural framework was designed through topological optimization to minimize its own weight while maximizing the payload capacity it can support.  I mostly worked on the payload design and created manufacturing tools for fuselage, control surfaces, and the wing assembly.  My team took first place in the international competition, and details about our design can be found on A&M's newsletter and team website. </p>
-        <a href="https://engineering.tamu.edu/news/2023/06/texas-am-rallies-and-wins-at-international-design-competition.html">Texas A&M Newsletter</a>
-        <a href="https://www.tamusaeaero.org/">Team Site</a>
-        <a href="projects/sae.html">Read More</a>
-    </div>
+        <div class="project-card">
+            <img src="images/mm-logo.png" alt="midi">
+            <h2>MIDIxMachina</h2>
+            <p>Software project designed to transform MIDI audio files from my DGX-650 keyboard.  The software takes in .midi files as input and processes them with different algorithms to produce interesting sounds and visual patterns.</p>
+            <a href="https://github.com/Agu303/MIDIxMachina" target="_blank">Github Repo</a>
+        </div>
 
-    <div class="project-card">
-        <img src="images/gcr.jpg" alt="GCR">
-        <h2>Garden Robot</h2>
-        <p>Modular robotic system capable of performing fertilizing and watering informed by sensor data collection and analysis.  This robot was designed to tread a long a 50-foot garden row with the goal of reducing physical strain associated with gardening maintenace through remote control.</p>
-        <a href="https://tamueps.secure-platform.com/students/organizations/main/home">Engineering Project Showcase</a>
-        <a href="projects/gcr.html">Read More</a>
-    </div>
+        <div class="project-card">
+            <img src="images/blackhole.jpg" alt="astro">
+            <h2>C++ Astrophysics project</h2>
+            <p>Work in progress...</p>
+        </div>
 
-    <div class="project-card">
-        <img src="images/oL-logo.svg" alt="oL">
-        <h2>openLayup</h2>
-        <p>openLayup is an open-source, GUI-based structural simulation tool for aerospace structures. The software estimates key mechanical metrics such as stress, strain, and factor of safety based on material properties, ply layup configurations, and component geometries. It applies Classical Laminate Theory (CLT) and the Tsai-Wu failure criterion, enabling laminate-level failure-mode analysis across various aerospace components.</p>
-        <a href="projects/openLayup.html">Read More</a>
-        <a href="https://github.com/Agu303/openLayup" target="_blank">Github Repo</a>
-    </div>
+        <div class="project-card">
+            <img src="images/bitcoinprice.png" alt="MLbitcoin">
+            <h2>ML Methods for Engineering Data Analysis</h2>
+            <p>I took TAMU's MEEN 423 machine learning class in the spring of 2025.  I completed two projects for the class that utilized macine learning techniques to analyze complex datasets.  One was evaluating stess-strain relationships and one in financial time-series analysis.   </p>
+            <a href="projects/meen423.html">Read More</a>
+            <a href="https://github.com/Agu303/MEEN423_AG" target="_blank">Github Repo</a>
+        </div>
 
-    <div class="project-card">
-        <img src="images/BeamMeUp.png" alt="Beam">
-        <h2>BeamMeUpScotty</h2>
-        <p>2D structural analysis for trusses, beams, or frames.  Solves static equilibrium equations and matrices, visualizes structures/force diagrams/SF & BM graphs.</p>
-        <a href="https://github.com/Agu303/BeamMeUpScotty" target="_blank">Github Repo</a>
-    </div>
+        <div class="project-card">
+            <img src="images/pcb.jpg" alt="pcb">
+            <h2>Flight Computer</h2>
+            <p>wat dis gonna do?</p> 
+        </div>
 
-    <div class="project-card">
-        <img src="images/mm-logo.png" alt="midi">
-        <h2>MIDIxMachina</h2>
-        <p>Software project designed to transform MIDI audio files from my DGX-650 keyboard.  The software takes in .midi files as input and processes them with different algorithms to produce interesting sounds and visual patterns.</p>
-        <a href="https://github.com/Agu303/MIDIxMachina" target="_blank">Github Repo</a>
-    </div>
+        <!-- Add more project cards as needed -->
 
-    <div class="project-card">
-        <img src="images/blackhole.jpg" alt="astro">
-        <h2>C++ Astrophysics project</h2>
-        <p>Work in progress...</p>
-    </div>
-
-    <div class="project-card">
-        <img src="images/bitcoinprice.png" alt="MLbitcoin">
-        <h2>ML Methods for Engineering Data Analysis</h2>
-        <p>I took TAMU's MEEN 423 machine learning class in the spring of 2025.  I completed two projects for the class that utilized macine learning techniques to analyze complex datasets.  One was evaluating stess-strain relationships and one in financial time-series analysis.   </p>
-        <a href="projects/meen423.html">Read More</a>
-        <a href="https://github.com/Agu303/MEEN423_AG" target="_blank">Github Repo</a>
-    </div>
-
-    <div class="project-card">
-        <img src="images/pcb.jpg" alt="pcb">
-        <h2>Flight Computer</h2>
-        <p>wat dis gonna do?</p> 
-    </div>
-
-    <!-- Add more project cards as needed -->
-
-</section>
+    </section>
 
 </body>
 </html>
