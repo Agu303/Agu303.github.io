@@ -46,6 +46,18 @@ header {
   padding: 40px 20px;
 }
 
+.sae-header {
+  background-image: url('../images/IMG_9561.JPG');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+}
+
 /* Header text styling */
 .header-text {
   text-align: center;
