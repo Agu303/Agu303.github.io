@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garden Robot | Alvaro Guerra</title>
+    <title>Garden Cultivation Robot | Alvaro Guerra</title>
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
@@ -22,10 +22,114 @@
         </nav>
     </header>
 
+    <!-- ─────────── MAIN CONTENT ─────────── -->
     <section>
-        <div class = "centered-content" 
-        <h1 style="color: #ffffff; text-align: center;">Garden Robot</h1>
-        <p>...</p>
+        <!-- TITLE BLOCK -->
+        <div class = "centered-content">
+        <h1 style="color: #ffffff; text-align: center;">Garden Cultivation Robot</h1>
+        <h2 style="color: #ffffff; text-align: center";><i>GCR</i></h2>
+        <h3 style="color: #ffffff; text-align: center;">Senior Engineering Capstone Project – Texas A&amp;M University</h3>
+        <br>
+        
+        <!-- OVERVIEW -->
+        <p style="color: #ffffff;">
+            The Garden Cultivation Robot, <i>GCR</i> was developed to address the physical challenges associated with home gardening, especially for elderly and mobility-limited individuals. The team's goal was to create a modular, remotely-controlled robot capable of traversing a 50-foot garden row while delivering water and fertilizer to plants. Key design goals included modularity, maneuverability, durability, and ease of use.
+The final prototype successfully achieved its core objectives. The robot features a modular aluminum 8020 chassis with ABS and PETG enclosures, a twin DC motor drivetrain using chain and sprocket assemblies, and two modular subsystems for watering and fertilizing. The electronic control system was built around a dual-Arduino master-slave architecture, ensuring responsive wireless remote control with minimal signal latency. Failure risk assessments, including FMECA and Fault Tree Analysis, identified drivetrain misalignment and battery depletion as key concerns; these risks were addressed through design modifications, rigorous mechanical assembly, and iterative electronic debugging. The robot met major performance targets, including a 0.01 m turning radius, a 26% improvement in consumable volume, and a final project cost of $2,301.97, remaining within the approved contingency budget.
+        </p>
+        <br>
+        <!-- ROLE & SCOPE -->
+        <h3 style="color:#ffffff;">| My Role &amp; Scope</h3>
+        <ul style="color:#ffffff; font-size:1.3rem;">
+            <li>Worked from concept to field-ready prototype, covering CAD, electronics, code, and testing.</li>
+            <li>Designed modular <strong>8020 aluminum chassis</strong>.</li>
+            <li>Developed entire CAD assembly from concept to detailed drawings.</li>
+            <li>Developed <strong>dual-Arduino master-slave firmware</strong> with 2.4 GHz RF link for low-latency remote control.</li>
+        </ul>
+        <br>
+        <img src="../images/gcr_terrain_iso.png" alt="GCR prototype" style="display: block; margin: 0 auto; width:75%; height:auto;">
+        <br>
+        <br>
+        <!-- SYSTEM ARCHITECTURE TABLE -->
+        <h3 style="color:#ffffff;">| System Architecture</h3>
+        <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;color:#ffffff;text-align:left; font-size:1.3rem;">
+            <thead>
+                <tr>
+                    <th style="border-bottom:1px solid #888;">Sub-system</th>
+                    <th style="border-bottom:1px solid #888;">Hardware / Software</th>
+                    <th style="border-bottom:1px solid #888;">Why</th>
+                    <th style="border-bottom:1px solid #888;">Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Chassis</td><td>8020 alu extrusion + ABS/PETG panels</td><td>Modular &amp; weather-resistant</td><td>80/20 Inc.</td></tr>
+                <tr><td>Drivetrain</td><td>2 × 12 V DC gear-motors + chain &amp; sprocket</td><td>High torque, tight turns</td><td>Pololu / Tsubaki</td></tr>
+                <tr><td>Watering</td><td>12 V peristaltic pump + PVC piping</td><td>Precise metering</td><td>Autobonics</td></tr>
+                <tr><td>Fertilizing</td><td>Venturi spray nozzle</td><td>Uniform coverage</td><td>Custom</td></tr>
+                <tr><td>Controller</td><td>Arduino Uno (master) + Nano (slave) + nRF24L01</td><td>Low-latency RF</td><td>Arduino / Nordic</td></tr>
+                <tr><td>Power</td><td>12 V 9 Ah LiFePO₄</td><td>Long endurance</td><td>Bioenno Power</td></tr>
+            </tbody>
+        </table>
+        </div>
+        <br>
+        <img src="../images/gcr_cad.png" alt="GCR CAD model" style="display: block; margin: 0 auto;">
+        <br>
+        <br>
+        <!-- ELECTRONICS & CONTROL -->
+        <h3 style="color:#ffffff;">| Electronics &amp; Control</h3>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+            <img src="../images/electronic_simple.png" alt="Block diagram" style="width: 32%;height:auto;">
+            <img src="../images/gcr_schematic.png" alt="Schematic" style="width: 32%;height:auto;">
+            <img src="../images/gcr_RC.png" alt="RC Transmitter" style="width: 32%;height:auto;">
+        </div>
+        <p style="color:#ffffff; text-align:center;font-size:1em;">Dual-Arduino architecture, wiring schematic, and custom RC remote.</p>
+        <br>
+        <!-- SUB-SYSTEMS -->
+        <h3 style="color:#ffffff;">| Watering &amp; Fertilizing Modules</h3>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+            <img src="../images/gcr_watertank.png" alt="Water tank" style="width:32%;height:auto;">
+            <img src="../images/water_tank_pumps.png" alt="Pump array" style="width:32%;height:auto;">
+            <img src="../images/gcr_fert.png" alt="Fertilizer module" style="width:32%;height:auto;">
+        </div>
+        <br>
+        <!-- MANUFACTURING & DRIVETRAIN -->
+        <h3 style="color:#ffffff;">| Manufacturing &amp; Drivetrain</h3>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+            <img src="../images/chassis_build.png" alt="Chassis build" style="width:48%;height:auto;">
+            <img src="../images/double_motor.png" alt="Twin motor drivetrain" style="width:48%;height:auto;">
+        </div>
+        <br>
+        <!-- FINAL REPORT LINK -->
+        <p style="text-align:center;">
+            <a href="../files/Final%20Report%20.pdf" target="_blank" style="color:#ffffff;font-weight:bold;">Download Full Final Report (PDF)</a>
+        </p>
+        <br>
+        <!-- ANALYSIS & VERIFICATION -->
+        <h3 style="color:#ffffff;">| Analysis &amp; Verification</h3>
+        <ul style="color:#ffffff;">
+            <li><strong>Field trials</strong> – Completed 50-ft traversal &amp; watering in 6 min with 0.01 m turn radius.</li>
+            <li><strong>Throughput testing</strong> – 26 % higher consumable capacity than initial design spec.</li>
+            <li><strong>Reliability</strong> – 60-hour endurance run with zero drivetrain or electronics failures.</li>
+        </ul>
+        <br>
+        <br>
+        <!-- IMPACT & LESSONS LEARNED -->
+        <h3 style="color:#ffffff;">| Impact &amp; Lessons Learned</h3>
+        <p style="color:#ffffff;">
+            Bringing GCR from blank sheet to field test deepened my appreciation for <strong>end-to-end systems thinking</strong>:
+            translating user pain-points into requirements, validating them with FMECA, and closing the loop with
+            instrumented field trials.  I gained hands-on experience in <em>design-for-assembly</em> (8020 framing, chain
+            alignment jigs) and <em>design-for-serviceability</em> (tool-free module swaps).  Debugging the dual-Arduino
+            firmware taught me the value of layered diagnostics and watchdog timers.  Working with a cross-functional team
+            hardened my soft skills—weekly design reviews, Gantt tracking, and rapid knowledge sharing turned five students
+            into a cohesive engineering unit.
+        </p>
+        <br>
+        <hr style="border:0;border-top:1px solid #666;margin:3rem 0;">
+        <p style="color:#ffffff;text-align:center;font-weight:bold;">
+            TL;DR – Built a modular dual-Arduino garden robot that waters &amp; fertilizes 50 ft rows, hits 0.01 m turns, and boosts capacity by 26 % — all under budget.
+        </p>
+        <hr style="border:0;border-top:1px solid #757575;margin:3rem 0;">
         </div>
     </section>
 </body>
