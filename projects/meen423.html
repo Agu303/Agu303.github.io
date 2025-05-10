@@ -43,9 +43,29 @@
                 <li>Utilized Newton-Raphson method for faster convergence and improved accuracy</li>
             </ul>
 
-            <h3 style="color:#ffffff;">| Model Validation</h3>
+            <h3 style="color:#ffffff;">| Model Performance</h3>
+            <div style="overflow-x:auto;">
+                <table style="width:100%;border-collapse:collapse;color:#ffffff;text-align:left; font-size:1.3rem;">
+                    <thead>
+                        <tr>
+                            <th style="border-bottom:1px solid #888;">Model</th>
+                            <th style="border-bottom:1px solid #888;">Mean R²</th>
+                            <th style="border-bottom:1px solid #888;">Validation R²</th>
+                            <th style="border-bottom:1px solid #888;">Validation RMSE</th>
+                            <th style="border-bottom:1px solid #888;">Runtime</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Random Forest</td><td>0.7139 ±0.0122</td><td>0.7157</td><td>55.9973</td><td>10.83 min</td></tr>
+                        <tr><td>XGBoost</td><td>0.7616 ±0.0058</td><td>0.7651</td><td>50.9077</td><td>0.24 min</td></tr>
+                        <tr><td>Combined</td><td>n/a</td><td>0.7638</td><td>51.0468</td><td>n/a</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color:#ffffff;">| Validation Strategy</h3>
             <p style="color: #ffffff;">
-                Implemented a robust validation strategy using k-fold cross-validation (k=5) to balance computational efficiency with statistical reliability. The combined model architecture averages predictions from both RF and XGB models, effectively:
+                Implemented k-fold cross-validation (k=5) to balance computational efficiency with statistical reliability. The combined model architecture averages predictions from both RF and XGB models, effectively:
             </p>
             <ul style="color:#ffffff; font-size:1.3rem;">
                 <li>Mitigating individual model errors</li>
@@ -54,48 +74,62 @@
                 <li>Maintaining computational efficiency</li>
             </ul>
 
-            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
-                <img src="../images/ork_rocket.png" alt="Model Performance Visualization" style="width:48%;height:auto;">
-                <img src="../images/struct_workflow.png" alt="Model Architecture" style="width:48%;height:auto;">
-            </div>
-            <p style="color:#ffffff; text-align:center;font-size:1em;">Model performance metrics and architecture visualization</p>
-            <br>
-
             <!-- Project 2 -->
-            <h2 style="color:#ffffff;">| Project 2: Bitcoin Price Prediction</h2>
+            <h2 style="color:#ffffff;">| Project 2: Bitcoin Price Prediction with Sentiment Analysis</h2>
             <p style="color: #ffffff;">
-                Developed a time series analysis model to predict Bitcoin price movements using historical data and market indicators. The project focused on implementing advanced forecasting techniques while accounting for cryptocurrency market volatility.
+                Developed a sophisticated cryptocurrency price forecasting system combining historical market data with Twitter sentiment analysis. The project achieved a high R² value of 0.7008 using Random Forest, demonstrating the effectiveness of sentiment analysis in predicting short-term price movements.
             </p>
 
             <h3 style="color:#ffffff;">| Technical Approach</h3>
             <ul style="color:#ffffff; font-size:1.3rem;">
-                <li>Implemented LSTM (Long Short-Term Memory) networks for sequence prediction</li>
-                <li>Utilized technical indicators as feature engineering</li>
-                <li>Applied data normalization and preprocessing techniques</li>
-                <li>Implemented rolling window validation for time series data</li>
-            </ul>
-
-            <h3 style="color:#ffffff;">| Model Performance</h3>
-            <p style="color: #ffffff;">
-                The model demonstrated significant improvements in prediction accuracy through:
-            </p>
-            <ul style="color:#ffffff; font-size:1.3rem;">
-                <li>Feature selection optimization</li>
-                <li>Hyperparameter tuning</li>
-                <li>Ensemble method integration</li>
-                <li>Real-time prediction capabilities</li>
+                <li>Processed 4 years of BTC price data (2015-2019) and Twitter sentiment (2014-2019)</li>
+                <li>Implemented VADER sentiment analysis on ~3GB of Twitter data</li>
+                <li>Created comprehensive feature engineering pipeline including:
+                    <ul>
+                        <li>Technical indicators (MACD, RSI14, Bollinger Bands)</li>
+                        <li>Sentiment ratios and rolling averages</li>
+                        <li>Price momentum and volatility metrics</li>
+                    </ul>
+                </li>
+                <li>Optimized hyperparameters using RandomizedSearchCV with TimeSeriesSplit</li>
             </ul>
 
             <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
-                <img src="../images/bitcoinprice.png" alt="Bitcoin Price Prediction" style="width:48%;height:auto;">
-                <img src="../images/struct_workflow.png" alt="Prediction Model Architecture" style="width:48%;height:auto;">
+                <img src="../images/423_proj2BTC Closing Price and Raw Sentiment Scores per day.png" alt="BTC Price and Sentiment Analysis" style="width:48%;height:auto;">
+                <img src="../images/423_proj2BTC price forecast with RF model.png" alt="BTC Price Forecast" style="width:48%;height:auto;">
             </div>
-            <p style="color:#ffffff; text-align:center;font-size:1em;">Price prediction visualization and model architecture</p>
+            <p style="color:#ffffff; text-align:center;font-size:1em;">BTC price and sentiment correlation analysis, and Random Forest model price predictions</p>
             <br>
+
+            <h3 style="color:#ffffff;">| Model Performance</h3>
+            <div style="overflow-x:auto;">
+                <table style="width:100%;border-collapse:collapse;color:#ffffff;text-align:left; font-size:1.3rem;">
+                    <thead>
+                        <tr>
+                            <th style="border-bottom:1px solid #888;">Model</th>
+                            <th style="border-bottom:1px solid #888;">R²</th>
+                            <th style="border-bottom:1px solid #888;">MSE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Random Forest</td><td>0.7008</td><td>2,021,834.19</td></tr>
+                        <tr><td>XGBoost</td><td>0.6946</td><td>2,063,875.95</td></tr>
+                        <tr><td>LSTM</td><td>0.6138</td><td>2,692,072.46</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color:#ffffff;">| Key Findings</h3>
+            <ul style="color:#ffffff; font-size:1.3rem;">
+                <li>Sentiment analysis significantly improved short-term price movement prediction</li>
+                <li>Model accuracy decreased during periods of extreme market volatility</li>
+                <li>Random Forest outperformed LSTM and XGBoost in stability and accuracy</li>
+                <li>Successfully predicted general market trends using only sentiment data post-training</li>
+            </ul>
 
             <hr style="border:0;border-top:1px solid #666;margin:3rem 0;">
             <p style="color:#ffffff;text-align:center;font-weight:bold;">
-                TL;DR – Developed ensemble ML models for mechanical analysis and implemented LSTM-based Bitcoin price prediction, demonstrating advanced machine learning applications in engineering and finance.
+                TL;DR – Developed ensemble ML models for mechanical analysis achieving 0.76 R² and implemented sentiment-based Bitcoin price prediction with 0.70 R² accuracy, demonstrating advanced machine learning applications in engineering and finance.
             </p>
             <hr style="border:0;border-top:1px solid #757575;margin:3rem 0;">
         </div>
