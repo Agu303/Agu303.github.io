@@ -42,7 +42,8 @@
                 <li>Integrated XGBoost for superior handling of structured numerical data</li>
                 <li>Utilized Newton-Raphson method for faster convergence and improved accuracy</li>
             </ul>
-
+            <br>
+            <br>
             <h3 style="color:#ffffff;">| Model Performance</h3>
             <div style="overflow-x:auto;">
                 <table style="width:100%;border-collapse:collapse;color:#ffffff;text-align:left; font-size:1.3rem;">
@@ -62,7 +63,8 @@
                     </tbody>
                 </table>
             </div>
-
+            <br>
+            <br>
             <h3 style="color:#ffffff;">| Validation Strategy</h3>
             <p style="color: #ffffff;">
                 Implemented k-fold cross-validation (k=5) to balance computational efficiency with statistical reliability. The combined model architecture averages predictions from both RF and XGB models, effectively:
@@ -73,7 +75,8 @@
                 <li>Improving overall prediction accuracy</li>
                 <li>Maintaining computational efficiency</li>
             </ul>
-
+            <br>
+            <br>
             <br>
             <br>
             <!-- Project 2 -->
@@ -96,7 +99,8 @@
                 <li>Capture hidden trends</li>
                 <li>Simulate real-world trading decisions</li>
             </ul>
-
+            <br>
+            <br>
             <h3 style="color:#ffffff;">| Technical Approach</h3>
             <ul style="color:#ffffff; font-size:1.3rem;">
                 <li>Processed 4 years of BTC price data (2015-2019) and Twitter sentiment (2014-2019)</li>
@@ -156,20 +160,22 @@
 
             <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
                 <div style="width:48%;">
-                    <p style="color:#ffffff; text-align:center;font-size:1em;">[XGBoost Prediction Plot]</p>
+                    <img src="../images/btc with xgboost.png" alt="xg" style="width:48%;height:auto;">
                     <p style="color:#ffffff; text-align:center;font-size:0.9em;">XGBoost showed similar performance but was more sensitive to market volatility</p>
                 </div>
                 <div style="width:48%;">
-                    <p style="color:#ffffff; text-align:center;font-size:1em;">[LSTM Prediction Plot]</p>
+                    <img src="../images/BTC with LSTM.png" alt="lstm" style="width:48%;height:auto;">
                     <p style="color:#ffffff; text-align:center;font-size:0.9em;">LSTM struggled with the hybrid nature of our feature set</p>
                 </div>
             </div>
-
+            <br>
+            <br>
             <h3 style="color:#ffffff;">| Results and Analysis</h3>
             <p style="color: #ffffff;">
                 Our chosen model achieved a R² score of 0.7008 on the post-2018 test data set. The predicted vs. actual BTC prices show that the model tracks short-term trends and direction well. Larger deviations occur during high volatility, suggesting that further robustness techniques (e.g., uncertainty quantification) could be valuable.
             </p>
-
+            <br>
+            <br>
             <h3 style="color:#ffffff;">| Future Work</h3>
             <ul style="color:#ffffff; font-size:1.3rem;">
                 <li>Incorporate more current Twitter data to get a live version of Twitter sentiment scores</li>
