@@ -82,6 +82,21 @@
                 Developed a sophisticated cryptocurrency price forecasting system combining historical market data with Twitter sentiment analysis. The project achieved a high R² value of 0.7008 using Random Forest, demonstrating the effectiveness of sentiment analysis in predicting short-term price movements.
             </p>
 
+            <h3 style="color:#ffffff;">| Problem Statement</h3>
+            <p style="color: #ffffff;">
+                The Bitcoin value is infamously volatile and many models struggle to predict its behavior. Traditional models rely on historical prices alone, but our goal is to build a smarter forecasting model that integrates both crowd sentiment from Twitter data and technical indicators from previous prices, using more features to better predict Bitcoin's future value.
+            </p>
+
+            <h3 style="color:#ffffff;">| Motivation</h3>
+            <p style="color: #ffffff;">
+                Bitcoin and other cryptocurrencies are notoriously volatile. Emotions like fear and greed drive massive price swings, often reflected on platforms like Twitter before the market reacts. By analyzing both market behavior and social sentiment, we aim to:
+            </p>
+            <ul style="color:#ffffff; font-size:1.3rem;">
+                <li>Anticipate price moves earlier</li>
+                <li>Capture hidden trends</li>
+                <li>Simulate real-world trading decisions</li>
+            </ul>
+
             <h3 style="color:#ffffff;">| Technical Approach</h3>
             <ul style="color:#ffffff; font-size:1.3rem;">
                 <li>Processed 4 years of BTC price data (2015-2019) and Twitter sentiment (2014-2019)</li>
@@ -93,7 +108,16 @@
                         <li>Price momentum and volatility metrics</li>
                     </ul>
                 </li>
-                <li>Optimized hyperparameters using RandomizedSearchCV with TimeSeriesSplit</li>
+                <li>Engineered 19 features including sentiment ratios, price momentum, volatility, and technical indicators</li>
+                <li>Optimized hyperparameters using RandomizedSearchCV with TimeSeriesSplit:
+                    <ul>
+                        <li>n_estimators: 100</li>
+                        <li>max_depth: 10</li>
+                        <li>min_samples_split: 5</li>
+                        <li>min_samples_leaf: 2</li>
+                        <li>max_features: log2</li>
+                    </ul>
+                </li>
             </ul>
 
             <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
@@ -121,12 +145,38 @@
                 </table>
             </div>
 
-            <h3 style="color:#ffffff;">| Key Findings</h3>
+            <h3 style="color:#ffffff;">| Model Comparison</h3>
+            <p style="color: #ffffff;">
+                While all three models were evaluated, Random Forest was chosen as the final model for several key reasons:
+            </p>
             <ul style="color:#ffffff; font-size:1.3rem;">
-                <li>Sentiment analysis significantly improved short-term price movement prediction</li>
-                <li>Model accuracy decreased during periods of extreme market volatility</li>
-                <li>Random Forest outperformed LSTM and XGBoost in stability and accuracy</li>
-                <li>Successfully predicted general market trends using only sentiment data post-training</li>
+                <li><strong>Random Forest vs XGBoost:</strong> While both tree-based models performed similarly (R² of 0.7008 vs 0.6946), Random Forest showed better stability during high volatility periods and required less hyperparameter tuning. XGBoost, though powerful, was more sensitive to the noisy nature of cryptocurrency data.</li>
+                <li><strong>Random Forest vs LSTM:</strong> The LSTM model (R² of 0.6138) struggled with the mixed nature of our features (numerical and sentiment data). While LSTMs excel at pure time series data, our hybrid approach combining technical indicators with sentiment analysis was better suited for tree-based models.</li>
+            </ul>
+
+            <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+                <div style="width:48%;">
+                    <p style="color:#ffffff; text-align:center;font-size:1em;">[XGBoost Prediction Plot]</p>
+                    <p style="color:#ffffff; text-align:center;font-size:0.9em;">XGBoost showed similar performance but was more sensitive to market volatility</p>
+                </div>
+                <div style="width:48%;">
+                    <p style="color:#ffffff; text-align:center;font-size:1em;">[LSTM Prediction Plot]</p>
+                    <p style="color:#ffffff; text-align:center;font-size:0.9em;">LSTM struggled with the hybrid nature of our feature set</p>
+                </div>
+            </div>
+
+            <h3 style="color:#ffffff;">| Results and Analysis</h3>
+            <p style="color: #ffffff;">
+                Our chosen model achieved a R² score of 0.7008 on the post-2018 test data set. The predicted vs. actual BTC prices show that the model tracks short-term trends and direction well. Larger deviations occur during high volatility, suggesting that further robustness techniques (e.g., uncertainty quantification) could be valuable.
+            </p>
+
+            <h3 style="color:#ffffff;">| Future Work</h3>
+            <ul style="color:#ffffff; font-size:1.3rem;">
+                <li>Incorporate more current Twitter data to get a live version of Twitter sentiment scores</li>
+                <li>Use live sentiment scores to predict BTC prices in the near future</li>
+                <li>Create an ensemble of various models (XGBoost + Random Forest, others) to optimize model performance</li>
+                <li>Determine if there are other features that can be included to improve performance</li>
+                <li>Train model with other cryptocurrencies</li>
             </ul>
 
             <hr style="border:0;border-top:1px solid #666;margin:3rem 0;">
