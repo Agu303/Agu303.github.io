@@ -151,7 +151,7 @@
 
             <h3 style="color:#ffffff;">| Model Comparison</h3>
             <p style="color: #ffffff;">
-                While all three models were evaluated, Random Forest was chosen as the final model for several key reasons:
+                While all three models were evaluated, Random Forest was chosen as the final model for several key reasons. The model comparison reveals important insights about each approach's strengths and limitations:
             </p>
             <ul style="color:#ffffff; font-size:1.3rem;">
                 <li><strong>Random Forest vs XGBoost:</strong> While both tree-based models performed similarly (R² of 0.7008 vs 0.6946), Random Forest showed better stability during high volatility periods and required less hyperparameter tuning. XGBoost, though powerful, was more sensitive to the noisy nature of cryptocurrency data.</li>
@@ -159,15 +159,12 @@
             </ul>
 
             <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
-                <div style="width:48%;">
-                    <img src="../images/btc with xgboost.png" alt="xg" style="width:48%;height:auto;">
-                    <p style="color:#ffffff; text-align:center;font-size:0.9em;">XGBoost showed similar performance but was more sensitive to market volatility</p>
-                </div>
-                <div style="width:48%;">
-                    <img src="../images/BTC with LSTM.png" alt="lstm" style="width:48%;height:auto;">
-                    <p style="color:#ffffff; text-align:center;font-size:0.9em;">LSTM struggled with the hybrid nature of our feature set</p>
-                </div>
+                <img src="../images/btc with xgboost.png" alt="xg" style="width:48%;height:auto;">
+                <img src="../images/BTC with LSTM.png" alt="lstm" style="width:48%;height:auto;">
             </div>
+            <p style="color:#ffffff; text-align:center;font-size:1em;">XGBoost showed similar performance but was more sensitive to market volatility; LSTM struggled with the hybrid nature of our feature set</p>
+
+
             <br>
             <br>
             <h3 style="color:#ffffff;">| Results and Analysis</h3>
