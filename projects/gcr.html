@@ -64,7 +64,7 @@ The final prototype successfully achieved its core objectives. The robot feature
             <tbody>
                 <tr><td>Chassis</td><td>8020 alu extrusion + ABS/PETG panels</td><td>Modular &amp; weather-resistant</td><td>80/20 Inc.</td></tr>
                 <tr><td>Drivetrain</td><td>2 × 12 V DC gear-motors + chain &amp; sprocket</td><td>High torque, tight turns</td><td>Pololu / Tsubaki</td></tr>
-                <tr><td>Watering</td><td>12 V peristaltic pump + PVC piping</td><td>Precise metering</td><td>Autobonics</td></tr>
+                <tr><td>Watering</td><td>12 V water pumps + PVC piping</td><td>Precise metering</td><td>Autobonics</td></tr>
                 <tr><td>Fertilizing</td><td>Venturi spray nozzle</td><td>Uniform coverage</td><td>Custom</td></tr>
                 <tr><td>Controller</td><td>Arduino Uno (master) + Nano (slave) + nRF24L01</td><td>Low-latency RF</td><td>Arduino / Nordic</td></tr>
                 <tr><td>Power</td><td>12 V 9 Ah LiFePO₄</td><td>Long endurance</td><td>Bioenno Power</td></tr>
@@ -98,12 +98,54 @@ The final prototype successfully achieved its core objectives. The robot feature
             <img src="../images/chassis_build.png" alt="Chassis build" style="width:48%;height:auto;">
             <img src="../images/double_motor.png" alt="Twin motor drivetrain" style="width:48%;height:auto;">
         </div>
-        <br>
-        <!-- FINAL REPORT LINK -->
-        <p style="text-align:center;">
-            <a href="../files/Final%20Report%20.pdf" target="_blank" style="color:#ffffff;font-weight:bold;">Download Full Final Report (PDF)</a>
+
+        <!-- ARDUINO CODE OVERVIEW -->
+        <h3 style="color:#ffffff;">| Arduino Firmware Overview</h3>
+        <p style="color:#ffffff;">
+            The firmware is split across two sketches – <code>Master_Code.ino</code> on an Arduino&nbsp;Uno and <code>Slave_Code.ino</code> on an Arduino&nbsp;Nano. The Uno reads raw PWM signals from the FlySky&nbsp;FS-i6X receiver, steers the drivetrain at 75&nbsp;Hz, and forwards any plant-care commands to the Nano over a 400&nbsp;kHz I<sup>2</sup>C bus (address&nbsp;0×08). The Nano in turn drives the high-current actuator, pumps, and conveyor motor so power wiring stays short and serviceable.
         </p>
+        <ul style="color:#ffffff;font-size:1.1rem;">
+            <li><strong>Master (Uno)</strong>
+                <ul>
+                    <li><code>readInputs()</code> converts ±1000 µs RC pulses to ±255 PWM.</li>
+                    <li><code>calculateMotorSpeeds()</code> mixes throttle &amp; steering for skid-steer motion.</li>
+                    <li><code>applyMotorSpeeds()</code> updates the DRV8871 H-bridges every 50&nbsp;ms.</li>
+                    <li><code>sendToSlave()</code> packs three 16-bit control words (<em>actuator</em>, <em>motor</em>, <em>pump</em>) into a 6-byte I<sup>2</sup>C frame.</li>
+                    <li>Optional latency logger prints max/avg joystick-to-wheel delay for 30 s.</li>
+                </ul>
+            </li>
+            <li><strong>Slave (Nano)</strong>
+                <ul>
+                    <li><code>receiveEvent()</code> ISR unpacks the 6-byte frame.</li>
+                    <li>Implements dead-zones and full-range overrides for:<br>
+                        – Linear actuator (L298N&nbsp;#2)<br>
+                        – 12 V conveyor motor (L298N&nbsp;#2)<br>
+                        – Dual water pumps (L298N&nbsp;#1)</li>
+                    <li>Failsafe: outputs default to safe-off if no I<sup>2</sup>C traffic appears within the watchdog window.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <pre style="background:#111;color:#0f0;padding:1rem;overflow-x:auto;font-size:0.9rem;"><code>// Master – sendToSlave()
+void sendToSlave(int act, int motor, int pump) {
+  Wire.beginTransmission(8);            // Nano address 0x08
+  Wire.write(highByte(act));  Wire.write(lowByte(act));
+  Wire.write(highByte(motor));Wire.write(lowByte(motor));
+  Wire.write(highByte(pump)); Wire.write(lowByte(pump));
+  Wire.endTransmission();
+}
+
+// Slave – receiveEvent()
+void receiveEvent(int) {
+  int act   = (Wire.read() << 8) | Wire.read();
+  int motor = (Wire.read() << 8) | Wire.read();
+  int pump  = (Wire.read() << 8) | Wire.read();
+  // ...hardware actuation...
+}
+</code></pre>
+        <p style="color:#ffffff; text-align:center; font-size:1em;">Measured end-to-end control latency: ≈5 ms.</p>
         <br>
+
         <!-- ANALYSIS & VERIFICATION -->
         <h3 style="color:#ffffff;">| Analysis &amp; Verification</h3>
         <ul style="color:#ffffff;">
@@ -113,6 +155,9 @@ The final prototype successfully achieved its core objectives. The robot feature
         </ul>
         <br>
         <br>
+
+        
+
         <!-- IMPACT & LESSONS LEARNED -->
         <h3 style="color:#ffffff;">| Impact &amp; Lessons Learned</h3>
         <p style="color:#ffffff;">
