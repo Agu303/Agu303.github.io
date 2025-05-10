@@ -1,0 +1,5 @@
+adafruit-blinka
+adafruit-circuitpython-dht
+pyserial
+pynmea2
+matplotlib
