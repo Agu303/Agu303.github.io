@@ -36,6 +36,9 @@
             The Garden Cultivation Robot, <i>GCR</i> was developed to address the physical challenges associated with home gardening, especially for elderly and mobility-limited individuals. The team's goal was to create a modular, remotely-controlled robot capable of traversing a 50-foot garden row while delivering water and fertilizer to plants. Key design goals included modularity, maneuverability, durability, and ease of use.
 The final prototype successfully achieved its core objectives. The robot features a modular aluminum 8020 chassis with ABS and PETG enclosures, a twin DC motor drivetrain using chain and sprocket assemblies, and two modular subsystems for watering and fertilizing. The electronic control system was built around a dual-Arduino master-slave architecture, ensuring responsive wireless remote control with minimal signal latency. Failure risk assessments, including FMECA and Fault Tree Analysis, identified drivetrain misalignment and battery depletion as key concerns; these risks were addressed through design modifications, rigorous mechanical assembly, and iterative electronic debugging. The robot met major performance targets, including a 0.01 m turning radius, a 26% improvement in consumable volume, and a final project cost of $2,301.97, remaining within the approved contingency budget.
         </p>
+        <p style="color: #ffffff; text-align: center; margin-top: 1rem;">
+            <a href="../files/Final Report.pdf" target="_blank" style="color: #87CEFA; text-decoration: underline;">View Full Project Report (PDF)</a>
+        </p>
         <br>
         <!-- ROLE & SCOPE -->
         <h3 style="color:#ffffff;">| My Role &amp; Scope</h3>
@@ -117,96 +120,439 @@ The final prototype successfully achieved its core objectives. The robot feature
         </p>
 
         <!-- Code Overview -->
-        <div style="background:#111;color:#0f0;padding:1rem;overflow-x:auto;font-size:0.9rem;margin:1rem 0;">
-            <h4 style="color:#0f0;margin-top:0;">Master Code (Arduino Uno)</h4>
-            <pre><code>// ───────── Motor Pins ─────────
-//Right motor
-#define PWM_A 9  // 
-#define A1    8  //
-#define A2    10 //
+        <div style="background:#111;color:#0f0;padding:1rem;font-size:0.9rem;margin:1rem 0;">
+            <!-- Master Arduino Code -->
+            <button id="toggleMasterCodeBtn" onclick="toggleCode('masterCode', 'toggleMasterCodeBtn', 'Master Arduino')" style="background-color: #0056b3; color: white; padding: 8px 15px; margin-bottom: 10px; border: none; border-radius: 4px; cursor: pointer;">View Master Arduino Code</button>
+            <div id="masterCode" style="display: none; overflow-x:auto;">
+                <h4 style="color:#0f0;margin-top:0;">Master Code (Arduino Uno)</h4>
+                <pre><code>// ───────── Motor Pins ─────────
+                #include <Wire.h>
 
-#define PWM_B 11 // Left motor
-#define B1    12
-#define B2    13
-
-// ───────── RC Input Channels ─────────
-const int steeringPin = 2;
-const int throttlePin = 3;
-const int pumpPin = 5;
-const int actuatorPin = 4;
-const int motorPin = 6;
-
-// ───────── Signal Range + Thresholds ─────────
-#define PULSE_MIN  980
-#define PULSE_MAX  1980
-#define SPEED_MIN -255
-#define SPEED_MAX  255
-#define DEADZONE   20
-
-void loop() {
-  if (millis() - lastUpdate >= updateInterval) {
-    lastUpdate = millis();
-
-    int throttle, steering, pumpSignal;
-    readInputs(throttle, steering, pumpSignal);
-
-    int rightMotorSpeed, leftMotorSpeed;
-    calculateMotorSpeeds(throttle, steering, rightMotorSpeed, leftMotorSpeed);
-    applyMotorSpeeds(rightMotorSpeed, leftMotorSpeed);
-
-    int actuatorSignal = pulseIn(actuatorPin, HIGH);
-    int motorSignal = pulseIn(motorPin, HIGH);
-    sendToSlave(actuatorSignal, motorSignal, pumpSignal);
-  }
+                    // Define Motor A (Right Motor) Pins
+                    #define PWM_A 9
+                    #define A1 7
+                    #define A2 6
+                    
+                    // Define Motor B (Left Motor) Pins
+                    #define PWM_B 10
+                    #define B1 11
+                    #define B2 12
+                    
+                    // Receiver input pins for motor control
+                    const int steeringPin = 2;
+                    const int throttlePin = 3;
+                    
+                    // RC input channels
+                    #define CHANNEL_PIN 5   // FS-i6X channel for pump control
+                    const int actuatorPin = 13; // Actuator control signal
+                    const int motorPin = 4;     // 12V motor control signal
+                    
+                    // Input pulse range (FS-i6X default)
+                    #define PULSE_MIN 980
+                    #define PULSE_MAX 1980
+                    
+                    // Motor speed range
+                    #define SPEED_MIN -255
+                    #define SPEED_MAX 255
+                    
+                    // Deadzone threshold
+                    #define DEADZONE 20
+                    
+                    // Timing for non-blocking execution
+                    unsigned long lastUpdate = 0;
+                    const int updateInterval = 50;
+                    
+                    // === Latency Testing Variables ===
+                    unsigned long lastSignalTime = 0;
+                    float latencySum = 0;
+                    unsigned long latencyCount = 0;
+                    float maxLatency = 0;
+                    unsigned long startTime = 0;
+                    const unsigned long loggingDurationMs = 30000; // Log for 30 seconds
+                    bool latencyDone = false;
+                    
+                    
+                    void setup() {
+                        startTime = millis();
+                        Serial.println("Time(ms),Latency(ms)");
+                    
+                    
+                        Serial.begin(9600);
+                        Wire.begin();  // Start I2C as master
+                    
+                        // Set motor control pins as outputs
+                        pinMode(PWM_A, OUTPUT);
+                        pinMode(A1, OUTPUT);
+                        pinMode(A2, OUTPUT);
+                        pinMode(PWM_B, OUTPUT);
+                        pinMode(B1, OUTPUT);
+                        pinMode(B2, OUTPUT);
+                    
+                        // Set receiver input pins
+                        pinMode(steeringPin, INPUT);
+                        pinMode(throttlePin, INPUT);
+                        pinMode(CHANNEL_PIN, INPUT);
+                        pinMode(actuatorPin, INPUT);
+                        pinMode(motorPin, INPUT);
+                    }
+                    
+                    void loop() {
+                        if (!latencyDone) {
+                          pulseIn(steeringPin, HIGH);
+                          unsigned long now = micros();
+                          float latency = (now - lastSignalTime) / 1000.0;
+                          lastSignalTime = now;
+                    
+                        if (latencyCount > 0) {
+                          latencySum += latency;
+                          if (latency > maxLatency) maxLatency = latency;
+                    
+                          Serial.print(millis());
+                          Serial.print(",");
+                          Serial.println(latency, 3);
+                        }
+                    
+                        latencyCount++;
+                    
+                        if (millis() - startTime >= loggingDurationMs) {
+                          latencyDone = true;
+                          float averageLatency = latencySum / (latencyCount - 1);
+                          Serial.println();
+                          Serial.println("=== Summary ===");
+                          Serial.print("Average Latency (ms): ");
+                          Serial.println(averageLatency, 3);
+                          Serial.print("Max Latency (ms): ");
+                          Serial.println(maxLatency, 3);
+                          Serial.println("================");
+                        }
+                      }
+                    
+                        if (millis() - lastUpdate >= updateInterval) {
+                            lastUpdate = millis();
+                    
+                            int throttle, steering, pumpSignal;
+                            readInputs(throttle, steering, pumpSignal);
+                    
+                            int rightMotorSpeed, leftMotorSpeed;
+                            calculateMotorSpeeds(throttle, steering, rightMotorSpeed, leftMotorSpeed);
+                    
+                            applyMotorSpeeds(rightMotorSpeed, leftMotorSpeed);
+                    
+                            // Read signals and send to slave arduino
+                            int actuatorSignal = pulseIn(actuatorPin, HIGH);
+                            int motorSignal = pulseIn(motorPin, HIGH);
+                            sendToSlave(actuatorSignal, motorSignal, pumpSignal);
+                    
+                            debugOutput(throttle, steering, rightMotorSpeed, leftMotorSpeed, pumpSignal, actuatorSignal, motorSignal);
+                        }
+                    }
+                    
+                    void readInputs(int &throttle, int &steering, int &pumpSignal) {
+                        throttle = pulseIn(throttlePin, HIGH);
+                        steering = pulseIn(steeringPin, HIGH);
+                        pumpSignal = pulseIn(CHANNEL_PIN, HIGH);
+                    
+                        throttle = map(throttle, PULSE_MIN, PULSE_MAX, SPEED_MIN, SPEED_MAX);
+                        steering = map(steering, PULSE_MIN, PULSE_MAX, SPEED_MIN, SPEED_MAX);
+                    
+                        throttle = (abs(throttle) < DEADZONE) ? 0 : throttle;
+                        steering = (abs(steering) < DEADZONE) ? 0 : steering;
+                    }
+                    
+                    void calculateMotorSpeeds(int throttle, int steering, int &rightMotorSpeed, int &leftMotorSpeed) {
+                        if (throttle == 0) {
+                            rightMotorSpeed = -steering;
+                            leftMotorSpeed = steering;
+                        } else {
+                            rightMotorSpeed = constrain(throttle - steering / 2, SPEED_MIN, SPEED_MAX);
+                            leftMotorSpeed  = constrain(throttle + steering / 2, SPEED_MIN, SPEED_MAX);
+                    
+                            if (steering == 0) {
+                                rightMotorSpeed = leftMotorSpeed = throttle;
+                            }
+                        }
+                    }
+                    
+                    void applyMotorSpeeds(int rightMotorSpeed, int leftMotorSpeed) {
+                        setMotorSpeed(PWM_A, A1, A2, rightMotorSpeed);
+                        setMotorSpeed(PWM_B, B1, B2, -leftMotorSpeed);  // Inverted for tank drive
+                    }
+                    
+                    void setMotorSpeed(int pwmPin, int pin1, int pin2, int speed) {
+                        digitalWrite(pin1, speed > 0);
+                        digitalWrite(pin2, speed < 0);
+                        analogWrite(pwmPin, abs(speed));
+                    }
+                    
+                    // NEW: Send actuator, motor, and pump signals to slave arduino
+                    void sendToSlave(int actuatorSignal, int motorSignal, int pumpSignal) {
+                        Wire.beginTransmission(8); // Slave address
+                    
+                        Wire.write((byte)(actuatorSignal >> 8));
+                        Wire.write((byte)(actuatorSignal & 0xFF));
+                        Wire.write((byte)(motorSignal >> 8));
+                        Wire.write((byte)(motorSignal & 0xFF));
+                        Wire.write((byte)(pumpSignal >> 8));
+                        Wire.write((byte)(pumpSignal & 0xFF));
+                    
+                        Wire.endTransmission();
+                    }
+                    
+                    void debugOutput(int throttle, int steering, int rightMotorSpeed, int leftMotorSpeed,
+                                     int pumpSignal, int actuatorSignal, int motorSignal) {
+                        Serial.print("Throttle: "); Serial.print(throttle);
+                        Serial.print(" | Steering: "); Serial.print(steering);
+                        Serial.print(" | Left Motor: "); Serial.print(leftMotorSpeed);
+                        Serial.print(" | Right Motor: "); Serial.print(rightMotorSpeed);
+                        Serial.print(" | Pump: "); Serial.print(pumpSignal);
+                        Serial.print(" | Actuator: "); Serial.print(actuatorSignal);
+                        Serial.print(" | Motor: "); Serial.println(motorSignal);
+                    }
 }</code></pre>
+            </div>
+            <hr style="border-color: #333; margin: 15px 0;">
 
-            <h4 style="color:#0f0;">Slave Code (Arduino Nano)</h4>
-            <pre><code>// ───── Pin Map ─────
-#define ACTUATOR_PWM 3
-#define ACTUATOR_IN1 5
-#define ACTUATOR_IN2 6
+            <!-- Slave Arduino Code -->
+            <button id="toggleSlaveCodeBtn" onclick="toggleCode('slaveCode', 'toggleSlaveCodeBtn', 'Slave Arduino')" style="background-color: #0056b3; color: white; padding: 8px 15px; margin-bottom: 10px; border: none; border-radius: 4px; cursor: pointer;">View Slave Arduino Code</button>
+            <div id="slaveCode" style="display: none; overflow-x:auto;">
+                <h4 style="color:#0f0;">Slave Code (Arduino Nano)</h4>
+                <pre><code>// ───── Pin Map ─────
+                #include <Wire.h>
 
-#define MOTOR_ENA 9   // PWM-capable pin
-
-#define PUMP_A_ENA 10
-#define PUMP_B_ENA 11
-
-// ───── Thresholds ─────
-int prevActSignal = -1;
-const int deadzone = 10;
-
-void receiveEvent(int howMany) {
-  if (howMany < 6) return;
-
-  int actSignal   = (Wire.read() << 8) | Wire.read();
-  int motorSignal = (Wire.read() << 8) | Wire.read();
-  int pumpSignal  = (Wire.read() << 8) | Wire.read();
-
-  // ───── 12V Motor ─────
-  if (motorSignal > 1500) {
-    analogWrite(MOTOR_ENA, 255);
-  } else {
-    analogWrite(MOTOR_ENA, 0);
-  }
-
-  // ───── Pumps ─────
-  bool pumpON = pumpSignal > 1500;
-  analogWrite(PUMP_A_ENA, pumpON ? 255 : 0);
-  analogWrite(PUMP_B_ENA, pumpON ? 255 : 0);
-
-  // ───── Actuator Control ─────
-  if (actSignal < 1010) {
-    digitalWrite(ACTUATOR_IN1, LOW);
-    digitalWrite(ACTUATOR_IN2, HIGH);
-    analogWrite(ACTUATOR_PWM, 255);
-  } else if (actSignal > 1980) {
-    digitalWrite(ACTUATOR_IN1, HIGH);
-    digitalWrite(ACTUATOR_IN2, LOW);
-    analogWrite(ACTUATOR_PWM, 255);
-  } else {
-    // ... actuator position control logic ...
-  }
+                    // === Pin Definitions ===
+                    // Linear Actuator (L298N Driver 2)
+                    #define ACTUATOR_PWM 9
+                    #define ACTUATOR_IN1 7
+                    #define ACTUATOR_IN2 12  
+                    
+                    // 12V Motor (L298N Driver 2)
+                    #define MOTOR_IN1 4
+                    #define MOTOR_IN2 2
+                    #define MOTOR_ENA 8
+                    
+                    // Pumps (Motor Driver 1)
+                    #define PUMP_A_ENA 10
+                    #define PUMP_B_ENB 6
+                    
+                    // === State Variables ===
+                    int prevActSignal = -1;
+                    const int deadzone = 10;
+                    
+                    void setup() {
+                      Serial.begin(9600);
+                      Wire.begin(8); // I2C Slave Address
+                      Wire.onReceive(receiveEvent);
+                    
+                      // Set pin modes
+                      pinMode(ACTUATOR_PWM, OUTPUT);
+                      pinMode(ACTUATOR_IN1, OUTPUT);
+                      pinMode(ACTUATOR_IN2, OUTPUT);
+                      pinMode(MOTOR_IN1, OUTPUT);
+                      pinMode(MOTOR_IN2, OUTPUT);
+                      pinMode(MOTOR_ENA, OUTPUT);
+                      pinMode(PUMP_A_ENA, OUTPUT);
+                      pinMode(PUMP_B_ENB, OUTPUT);
+                    
+                      // Initialize outputs to LOW
+                      digitalWrite(MOTOR_IN1, LOW);
+                      digitalWrite(MOTOR_IN2, LOW);
+                      analogWrite(MOTOR_ENA, 0);
+                      digitalWrite(ACTUATOR_IN1, LOW);
+                      digitalWrite(ACTUATOR_IN2, LOW);
+                      analogWrite(ACTUATOR_PWM, 0);
+                      analogWrite(PUMP_A_ENA, 0);
+                      analogWrite(PUMP_B_ENB, 0);
+                    }
+                    
+                    void loop() {
+                      // I2C events handled in receiveEvent()
+                    }
+                    
+                    void receiveEvent(int howMany) {
+                      if (howMany >= 6) {
+                        int actSignal = (Wire.read() << 8) | Wire.read();
+                        int motorSignal = (Wire.read() << 8) | Wire.read();
+                        int pumpSignal = (Wire.read() << 8) | Wire.read();
+                    
+                        // === Debug Print ===
+                        Serial.print("Received | Actuator: ");
+                        Serial.print(actSignal);
+                        Serial.print(" | Motor: ");
+                        Serial.print(motorSignal);
+                        Serial.print(" | Pump: ");
+                        Serial.println(pumpSignal);
+                    
+                        // === Motor Control ===
+                        if (motorSignal > 1500) {
+                          Serial.println("Motor ON");
+                          digitalWrite(MOTOR_IN1, HIGH);
+                          digitalWrite(MOTOR_IN2, LOW);
+                          analogWrite(MOTOR_ENA, 255);
+                        } else {
+                          Serial.println("Motor OFF");
+                          digitalWrite(MOTOR_IN1, LOW);
+                          digitalWrite(MOTOR_IN2, LOW);
+                          analogWrite(MOTOR_ENA, 0);
+                        }
+                    
+                        // === Pump Control ===
+                        if (pumpSignal > 1500) {
+                          Serial.println("Pumps ON");
+                          analogWrite(PUMP_A_ENA, 255);
+                          analogWrite(PUMP_B_ENB, 255);
+                        } else {
+                          Serial.println("Pumps OFF");
+                          analogWrite(PUMP_A_ENA, 0);
+                          analogWrite(PUMP_B_ENB, 0);
+                        }
+                    
+                        // === Actuator Control ===
+                        if (actSignal < 1010) {
+                          Serial.println("Actuator FULL Retract");
+                          digitalWrite(ACTUATOR_IN1, LOW);
+                          digitalWrite(ACTUATOR_IN2, HIGH);
+                          analogWrite(ACTUATOR_PWM, 255);
+                        } else if (actSignal > 1980) {
+                          Serial.println("Actuator FULL EXTEND");
+                          digitalWrite(ACTUATOR_IN1, HIGH);
+                          digitalWrite(ACTUATOR_IN2, LOW);
+                          analogWrite(ACTUATOR_PWM, 255);
+                        } else {
+                          int delta = 0;
+                    
+                          if (prevActSignal == -1) {
+                            prevActSignal = actSignal;
+                            Serial.println("Actuator INIT");
+                          } else {
+                            delta = actSignal - prevActSignal;
+                    
+                            if (delta > deadzone) {
+                              Serial.println("Actuator Extending");
+                              digitalWrite(ACTUATOR_IN1, HIGH);
+                              digitalWrite(ACTUATOR_IN2, LOW);
+                              analogWrite(ACTUATOR_PWM, 255);
+                            } else if (delta < -deadzone) {
+                              Serial.println("Actuator Retracting");
+                              digitalWrite(ACTUATOR_IN1, LOW);
+                              digitalWrite(ACTUATOR_IN2, HIGH);
+                              analogWrite(ACTUATOR_PWM, 255);
+                            } else {
+                              Serial.println("Actuator STOPPED");
+                              digitalWrite(ACTUATOR_IN1, LOW);
+                              digitalWrite(ACTUATOR_IN2, LOW);
+                              analogWrite(ACTUATOR_PWM, 0);
+                            }
+                    
+                            prevActSignal = actSignal;
+                          }
+                        }
+                      }
+                    }
 }</code></pre>
+            </div>
+            <hr style="border-color: #333; margin: 15px 0;">
+
+            <!-- Raspberry Pi Sensor Visualization Code -->
+            <button id="togglePiCodeBtn" onclick="toggleCode('piCode', 'togglePiCodeBtn', 'Raspberry Pi Sensor')" style="background-color: #0056b3; color: white; padding: 8px 15px; margin-bottom: 10px; border: none; border-radius: 4px; cursor: pointer;">View Raspberry Pi Sensor Code</button>
+            <div id="piCode" style="display: none; overflow-x:auto;">
+                <h4 style="color:#0f0;">Raspberry Pi Sensor Code (DHT22 &amp; NEO-6M)</h4>
+                <pre><code>import time
+from datetime import datetime
+import board
+import adafruit_dht
+import serial
+import pynmea2
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+
+# Set up DHT22 sensor - connected to GPIO 18
+dht_device = adafruit_dht.DHT22(board.D18)  # GPIO 18 for DHT-22
+
+# Set up GPS - connected to GPIO 14 (TX) and 15 (RX)
+# On newer Raspberry Pi models, the primary UART is often at /dev/serial0
+gps_port = "/dev/serial0"  # Try this instead of /dev/ttyAMA0
+# Alternative options if serial0 doesn't work:
+# gps_port = "/dev/ttyS0"
+# gps_port = "/dev/ttyUSB0"  # If using a USB-to-Serial adapter
+gps_baudrate = 9600
+try:
+    ser = serial.Serial(gps_port, gps_baudrate, timeout=1)
+    print(f"Successfully connected to GPS on {gps_port}")
+except serial.SerialException as e:
+    print(f"Error opening serial port {gps_port}: {e}")
+    print("Available ports may include:")
+    import glob
+    available_ports = glob.glob("/dev/tty*")
+    for port in available_ports:
+        if "ttyS" in port or "ttyAMA" in port or "ttyUSB" in port or "serial" in port:
+            print(f"  - {port}")
+    raise
+
+# Data storage
+timestamps = []
+temperature_data = []
+humidity_data = []
+latitude_data = []
+longitude_data = []
+
+# Plot setup
+fig, (ax1, ax2) = plt.subplots(2, 1)
+fig.suptitle("Real-Time Sensor Data")
+
+def update_plot(frame):
+    global timestamps, temperature_data, humidity_data, latitude_data, longitude_data
+
+    # Read DHT22 sensor
+    try:
+        temp = dht_device.temperature
+        humidity = dht_device.humidity
+    except RuntimeError as e:
+        print(f"DHT error: {e}")
+        temp, humidity = None, None
+
+    # Read GPS data
+    lat, lon = None, None
+    try:
+        line = ser.readline().decode('utf-8', errors='ignore')
+        if line.startswith('$GPGGA'):
+            msg = pynmea2.parse(line)
+            lat, lon = msg.latitude, msg.longitude
+    except Exception as e:
+        print(f"GPS error: {e}")
+
+    # Store values
+    timestamps.append(time.time())
+    temperature_data.append(temp)
+    humidity_data.append(humidity)
+    latitude_data.append(lat)
+    longitude_data.append(lon)
+
+    # Keep last 100 values for visualization
+    timestamps, temperature_data, humidity_data = timestamps[-100:], temperature_data[-100:], humidity_data[-100:]
+    latitude_data, longitude_data = latitude_data[-100:], longitude_data[-100:]
+
+    # Update Temperature & Humidity Plot
+    ax1.clear()
+    ax1.plot(timestamps, temperature_data, label="Temperature (&deg;C)", color='r')
+    ax1.plot(timestamps, humidity_data, label="Humidity (%)", color='b')
+    ax1.set_xlabel("Time")
+    ax1.set_ylabel("Values")
+    ax1.legend()
+    ax1.grid()
+
+    # Update GPS Plot
+    ax2.clear()
+    ax2.scatter(longitude_data, latitude_data, label="GPS Location", color='g')
+    ax2.set_xlabel("Longitude")
+    ax2.set_ylabel("Latitude")
+    ax2.legend()
+    ax2.grid()
+
+# Start live update
+ani = animation.FuncAnimation(fig, update_plot, interval=1000)
+plt.show()
+</code></pre>
+            </div>
         </div>
 
         <p style="color:#ffffff;">
@@ -218,15 +564,32 @@ void receiveEvent(int howMany) {
                     <li>Reads 5 RC channels (throttle, steering, pump, actuator, motor) at 20 Hz</li>
                     <li>Implements differential drive with deadzone compensation</li>
                     <li>Maps RC pulses (980-1980 µs) to motor speeds (-255 to 255)</li>
-                    <li>Includes debug output for real-time monitoring</li>
+                    <li>Forwards actuator, motor, and pump commands to Slave Nano via I<sup>2</sup>C</li>
+                    <li>Includes serial debug output for real-time monitoring and latency testing</li>
                 </ul>
             </li>
             <li><strong>Slave Controller (Nano)</strong>
                 <ul>
+                    <li>Receives commands from Master Uno via I<sup>2</sup>C</li>
                     <li>Controls high-current devices: linear actuator, conveyor motor, and dual pumps</li>
                     <li>Implements threshold-based control for binary devices (pumps, motor)</li>
-                    <li>Uses position-based control for the linear actuator</li>
-                    <li>Includes debug output for actuator and pump states</li>
+                    <li>Uses position-based control with deadzone for the linear actuator</li>
+                    <li>Includes serial debug output for received commands and device states</li>
+                </ul>
+            </li>
+            <li><strong>Raspberry Pi (Sensor Visualization)</strong>
+                <ul>
+                    <li>Interfaces with DHT22 sensor for temperature and humidity readings (via GPIO)</li>
+                    <li>Connects to NEO-6M GPS module for location data (via Serial/UART)</li>
+                    <li>Includes error handling for sensor and serial port connections</li>
+                    <li>Stores the latest 100 readings for temperature, humidity, latitude, and longitude</li>
+                    <li>Uses Matplotlib to generate real-time animated plots: 
+                        <ul>
+                            <li>Temperature and humidity over time</li>
+                            <li>GPS coordinates (latitude vs. longitude)</li>
+                        </ul>
+                    </li>
+                    <li>Updates plots at 1-second intervals</li>
                 </ul>
             </li>
         </ul>
@@ -336,4 +699,17 @@ void receiveEvent(int howMany) {
 
     <hr style="border:0;border-top:1px solid #757575;margin:3rem 0;">
 </body>
+<script>
+function toggleCode(codeBlockId, buttonId, codeName) {
+    var codeBlock = document.getElementById(codeBlockId);
+    var button = document.getElementById(buttonId);
+    if (codeBlock.style.display === "none") {
+        codeBlock.style.display = "block";
+        button.textContent = "Hide " + codeName + " Code";
+    } else {
+        codeBlock.style.display = "none";
+        button.textContent = "View " + codeName + " Code";
+    }
+}
+</script>
 </html>
