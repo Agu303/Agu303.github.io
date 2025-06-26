@@ -110,22 +110,125 @@
         <br>
         <br>
 
-        <h3 style="color:#ffffff;">|  Impact &amp; Lessons Learned</h3>
-        <p style="color:#ffffff;">
-            This was an excellent experience in regards to managing a team, composites, and setting the foundation for an efficient workflow that enabled our structures team to accelerate progress in the future.  
-            Most importantly, running design reviews as "teaching sprints" boosted team‑wide analytical intuition  —  raising quality faster than any solo effort.
-        </p>
-        <br>
-        <br>
-
-        <hr style="border:0;border-top:1px solid #666;margin:3rem 0;">
-
-        <p style="color:#ffffff;text-align:center;font-weight:bold;">
-            TL;DR – Led structures on a 10k  ft hybrid rocket, mentored 12 engineers, launch was scrubbed at IREC  2025, but we are ready to go for the upcoming fall learned a lot for future personal L-certification launches.
-        </p>
-
         <hr style="border:0;border-top:1px solid #757575;margin:3rem 0;">
         </div>
+    </section>
+    <section class="content-wrapper">
+        <h1 style="text-align:center;color:#ffffff;">IGNITORS Post‑Mission Report</h1>
+        <p style="color:#ffffff;text-align:center;">Fire in the Hole – 10 k ft COTS Hybrid | International Rocket Engineering Competition 2025</p>
+
+        <!-- ======================================================
+             1. Mission & Design Requirements Matrix
+        ======================================================= -->
+        <h2 style="color:#ffffff;">1. Mission &amp; Design Requirements Matrix</h2>
+        <p style="color:#ffffff;"><strong>Primary Objective –</strong> Achieve the smallest absolute error between predicted and actual apogee while remaining within 10 000 ft of the 10 k class target. The pre‑flight Monte‑Carlo sweep predicted apogee between <em>10 459 ft</em> and <em>11 155 ft</em> AGL depending on wind shear.</p>
+        <ul style="color:#ffffff;">
+            <li>Wet mass constrained to 35 ± 1 lb for nominal stability.</li>
+            <li>Total program budget capped at USD 3500 (final spend USD 3 470).</li>
+            <li>Six‑month end‑to‑end schedule: founding, sponsorship, design, build.</li>
+            <li>Airframe FOS ≥ 2.0 under ascent and recovery loading; buckling margin ≥ 1.5.</li>
+            <li>Anisotropic laminate behaviour characterised with rule‑of‑mixtures back‑calcs and coupon tests.</li>
+            <li>All decisions gated through a living Requirements Matrix spreadsheet that tied every trade to a verification method.</li>
+        </ul>
+
+        <!-- ======================================================
+             2. Conceptual Design Choices
+        ======================================================= -->
+        <h2 style="color:#ffffff;">2. Conceptual Design Choices</h2>
+        <h3 style="color:#ffffff;">2.1 Configuration Trades</h3>
+        <p style="color:#ffffff;">A three‑fin clipped‑delta layout in filament‑wound fiberglass was selected after a Pugh matrix scored options against stability, drag, ease of manufacture, and cost. Three fins reduced drag and fabrication time by twenty‑five percent relative to a four‑fin baseline while still meeting a 1.8‑cal static margin. Fiberglass beat carbon because the hybrid’s nitrous vent antenna needed RF transparency and the team lacked an autoclave for high‑temperature cure.</p>
+
+        <h3 style="color:#ffffff;">2.2 Structure &amp; Materials</h3>
+        <p style="color:#ffffff;">Commercial G12 FWFG tubes from Wildman were adopted as the primary structure. Because the vendor publishes only basic tensile data, the laminate was reverse‑engineered: ±45° balanced ply assumption, 80 / 20 fibre‑to‑resin, E‑glass with West System 105 / 206 epoxy. Coupon tensile tests (ASTM D3039) agreed within nine percent of predictions, validating the CLT model.</p>
+        <ul style="color:#ffffff;">
+            <li>Nosecone – 4″ OD, 3∶1 ogive, aluminium tip (1.5 lb) for mass‑forward CG trimming.</li>
+            <li>Fins – 0.25″ birch ply after G10 order slipped; ply’s cross‑grain veneer still provided quasi‑isotropic stiffness.</li>
+            <li>Centering rings – PETG (100 % infill) printed overnight to recover schedule slip.</li>
+        </ul>
+        <p style="color:#ffffff;"><!-- place exploded CAD view of configuration here --></p>
+
+        <!-- tie back to requirements -->
+        <p style="color:#ffffff;">Each material choice closed a specific requirement: radio transparency for avionics, manufacturability inside the six‑month window, and safety factor under 3.5 kN motor thrust.</p>
+        <p style="color:#ffffff;"><!-- insert technical trade charts from CDR slides here --></p>
+
+        <!-- ======================================================
+             3. Preliminary Analysis
+        ======================================================= -->
+        <h2 style="color:#ffffff;">3. Preliminary Analysis</h2>
+        <p style="color:#ffffff;"><em>First‑pass hand calculations</em> sized the fins and body tube using the Barrowman method and Euler buckling respectively. With q = 6.6 kPa (Mach 0.92 at 3 700 m) each fin sees 99 lbf normal load, yielding a bending stress of 15 MPa—well below the birch allowable of 34 MPa.</p>
+        <pre style="background:#222;color:#ccc;padding:0.5rem;">N<sub>f</sub> = q · A · C<sub>Nα</sub> · α = 6.6 kPa · 0.015 m² · 2π · 0.17 rad ≈ 440 N</pre>
+        <p style="color:#ffffff;">Predicted critical Euler load on the 4&nbsp;″ tube is 12.4 kN giving a buckling FOS of 2.3.</p>
+        <p style="color:#ffffff;"><!-- insert screenshot of preliminary Excel sizing tool --></p>
+
+        <!-- margins -->
+        <h3 style="color:#ffffff;">Key Margins</h3>
+        <ul style="color:#ffffff;">
+            <li>Buckling safety factor: 2.3</li>
+            <li>Composite Tsai‑Wu failure index: 0.41</li>
+            <li>Stability margin: 1.8 calibres (rail‑exit) rising to 5.2 at burnout</li>
+        </ul>
+
+        <!-- ======================================================
+             4. Detailed Modelling & Simulation
+        ======================================================= -->
+        <h2 style="color:#ffffff;">4. Detailed Modelling and Simulation</h2>
+        <p style="color:#ffffff;">Non‑linear ANSYS analyses introduced motor thrust‑curve loading, aerodynamic pressure distribution, and recovery shock. The aft joint exhibited the lowest margin (max principal 87 MPa vs 110 MPa allowables). This triggered a <em>design pivot</em>: switching the aft bulkhead from PETG to G10 and adding a 2 mm filet of 105/206 epoxy.</p>
+        <p style="color:#ffffff;"><!-- insert von‑Mises contour plot here --></p>
+
+        <!-- ======================================================
+             5. Material & Component Testing
+        ======================================================= -->
+        <h2 style="color:#ffffff;">5. Material &amp; Component Testing</h2>
+        <p style="color:#ffffff;">Dual ejection‑charge ground tests validated 4.5 g main and 4 g drogue black‑powder masses. Both charges produced full separation with 15 % margin above required kinetic energy.</p>
+        <p style="color:#ffffff;"><!-- place ejection test video here --></p>
+
+        <!-- ======================================================
+             6. Manufacturing & Assembly
+        ======================================================= -->
+        <h2 style="color:#ffffff;">6. Manufacturing &amp; Assembly</h2>
+        <p style="color:#ffffff;">Build operations crammed into forty‑eight hours on‑site after dust storms shredded the range schedule. Rapid joints used medium‑cure USComposites 3∶1 epoxy. An internal epoxy drip between aft tube and coupler later blocked motor insertion; the defect was corrected by diamond‑reaming and finish‑sanding with 400 → 800 grit.</p>
+        <p style="color:#ffffff;"><!-- insert manufacturing photo collage here --></p>
+        <p style="color:#ffffff;">Thickness survey yielded 0.062 ± 0.003 in on body tubes and 0.060 ± 0.004 in on couplers. Mixed‑vendor mismatch forced sanding of couplers; future builds will single‑source airframe stock.</p>
+
+        <!-- ======================================================
+             7. System‑Level Validation
+        ======================================================= -->
+        <h2 style="color:#ffffff;">7. System‑Level Validation</h2>
+        <ul style="color:#ffffff;">
+            <li>Predicted wet mass 35.4 lb, measured 34.0 lb (3.9 % lighter).</li>
+            <li>CG offset 0.25 in aft on a 111 in vehicle – 0.23 % positional error.</li>
+            <li>Leak checks scrubbed by storm; pressurisation verified manually on pad.</li>
+        </ul>
+        <p style="color:#ffffff;">Go / No‑Go matrix enforced green status on avionics continuity, motor retention, and telemetry lock before pad departure.</p>
+
+        <!-- ======================================================
+             8. Flight Readiness & Risk Mitigation
+        ======================================================= -->
+        <h2 style="color:#ffffff;">8. Flight Readiness &amp; Risk Mitigation</h2>
+        <p style="color:#ffffff;">Top open risks at final review were: (1) coupler tolerance in desert grit, (2) nitrous vent icing, (3) team fatigue. Mitigations included oversize sanding, water‑trolley vent visualisation, and a two‑shift operations roster. Spare shear‑pinned nose module and redundant igniters were on‑site.</p>
+
+        <!-- ======================================================
+             9. Flight Results & Quick‑Look Data
+        ======================================================= -->
+        <h2 style="color:#ffffff;">9. Flight Results &amp; Quick‑Look Data</h2>
+        <p style="color:#ffffff;">Launch was scrubbed minutes before L‑0 when range closed at 12 00 due to 50 knot dust–storm gusts. No telemetry beyond pad diagnostics; therefore trajectory comparison is not available.</p>
+        <p style="color:#ffffff;"><!-- placeholder for future flight‑data plots --></p>
+
+        <!-- ======================================================
+             10. Conclusion & Next Iteration Plan
+        ======================================================= -->
+        <h2 style="color:#ffffff;">10. Conclusion &amp; Next Iteration Plan</h2>
+        <p style="color:#ffffff;">Deferring the first flight was disappointing but invaluable. The coupler fit issue, vent‑hole placement, and motor length mis‑match exposed systemic gaps in BOM control and schedule float. Next cycle priorities are:</p>
+        <ul style="color:#ffffff;">
+            <li>Freeze CAD three weeks before competition; finish full wet‑dress rehearsal at least one week out.</li>
+            <li>Adopt tailored‑ply home‑built airframe to tighten material allowables.</li>
+            <li>Implement static‑fire thrust rig for real M711 curve.</li>
+            <li>Document epoxy and layup SOP videos to slash new‑member onboarding time.</li>
+            <li>Earn individual L1 / L2 high‑power certifications to reduce organisational launch risk.</li>
+        </ul>
+
+        <hr style="border-top:1px solid #666;margin:2rem 0;">
+        <p style="color:#ffffff;text-align:center;font-weight:bold;">TL;DR – Built a 4″ hybrid to 10 k ft spec, scrubbed by desert storm; lessons learned embedded above, next flight scheduled Fall 2025.</p>
     </section>
 </body>
 </html>
