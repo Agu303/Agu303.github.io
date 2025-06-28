@@ -31,6 +31,7 @@ header {
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 /* Index page specific header */
@@ -273,19 +274,7 @@ footer {
 
 /* Responsive Design - Make it look good on smaller screens */
 @media screen and (max-width: 768px) {
-  nav {
-    flex-direction: column;         /* Stack the nav items vertically */
-    align-items: center;
-  }
-
-  nav a {
-    margin: 10px 0;                 /* Add space between links when stacked */
-  }
-
-  .resume-button {
-    width: 100%;                    /* Make the button full width on small screens */
-    padding: 20px;
-  }
+  /* Old mobile rules removed - replaced with comprehensive mobile styles above */
 }
 
 .project-card img {
@@ -503,5 +492,129 @@ ul {
   .centered-content {
     max-width: 95vw;
     padding: 16px 8px;
+  }
+}
+
+/* Mobile responsive header styles */
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: row;
+    padding: 10px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .logo-name {
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .logo-name h2 {
+    font-size: 1em;
+    margin: 0;
+  }
+
+  .logo {
+    width: 40px;
+    height: auto;
+  }
+
+  nav {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  nav a {
+    margin: 0;
+    padding: 6px 10px;
+    font-size: 0.8em;
+    border: none;
+    background: none;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  nav a:hover {
+    background-color: #333;
+    border-radius: 3px;
+  }
+
+  /* Special handling for index-header and sae-header on mobile */
+  .index-header,
+  .sae-header {
+    flex-direction: row;
+    padding: 10px;
+    gap: 10px;
+    min-height: auto;
+  }
+
+  .index-header .logo-link,
+  .sae-header .logo-link {
+    position: relative;
+    top: auto;
+    left: auto;
+    align-self: center;
+  }
+
+  .index-header nav,
+  .sae-header nav {
+    position: relative;
+    top: auto;
+    right: auto;
+    align-self: center;
+  }
+
+  .header-name {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+  }
+
+  .header-title {
+    font-size: 1.8em;
+    margin-top: 15px;
+  }
+
+  .header-line {
+    width: 90%;
+    height: 6px;
+    margin: 15px auto;
+  }
+
+  .resume-button {
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+/* Extra small mobile devices */
+@media screen and (max-width: 480px) {
+  header {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .logo-name h2 {
+    font-size: 0.9em;
+  }
+
+  .logo {
+    width: 35px;
+  }
+
+  nav a {
+    padding: 4px 8px;
+    font-size: 0.75em;
+  }
+
+  .header-name {
+    font-size: 2em;
+  }
+
+  .header-title {
+    font-size: 1.5em;
   }
 }
