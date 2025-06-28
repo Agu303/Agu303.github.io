@@ -528,6 +528,7 @@ h3 {
   color: #cccccc;
   margin: 8px 0 24px 0;     /* Space above and below captions */
   font-style: italic;
+  width: 100%;              /* Ensure full width for centering */
 }
 
 ul {
