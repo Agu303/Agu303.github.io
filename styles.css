@@ -523,12 +523,14 @@ h3 {
 }
 
 .image-caption {
-  text-align: center;
+  text-align: center !important;
   font-size: 0.9em;
   color: #cccccc;
-  margin: 8px 0 24px 0;     /* Space above and below captions */
+  margin: 8px auto 24px auto;  /* Center horizontally with auto margins */
   font-style: italic;
-  width: 100%;              /* Ensure full width for centering */
+  width: 100%;
+  display: block;              /* Ensure block display for centering */
+  max-width: 100%;             /* Ensure full width */
 }
 
 ul {
