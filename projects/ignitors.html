@@ -137,7 +137,6 @@
 
         <br>
         <h3 style="color:#ffffff;">Structure &amp; Materials</h3>
-        <p style="color:#ffffff; margin-left: 20px;">Commercial G12 FWFG tubes from Wildman were adopted as the primary structure. Because the vendor publishes only basic tensile data, the laminate was reverse‑engineered: ±45° balanced ply assumption, 80 / 20 fibre‑to‑resin, E‑glass with West System 105 / 206 epoxy. Ideally we would utilize coupon tensile tests (ASTM D3039) to confirm if the laminate's strength properties agreed within predictions, validating the CLT model. However, due to time constraints, the team opted to use the vendor's published data.</p>
         <ul style="color:#ffffff; margin-left: 40px;">
             <li>Nosecone – 4″ OD, FG for mass‑forward CG trimming.</li>
             <li>Fins – 0.25″ birch ply after G10 order slipped; ply's cross‑grain veneer still provided quasi‑isotropic stiffness.</li>
@@ -157,6 +156,9 @@
              Preliminary Analysis
         ======================================================= -->
         <h2 style="color:#ffffff;">Preliminary Analysis</h2>
+        <p style="color:#ffffff; margin-left: 20px;">G12 filament wound fiberglass tubes are used for the body tube and nose cone. The vendor provides only basic tensile data, so the laminate was reverse‑engineered: ±45° balanced ply assumption, 80 / 20 fibre‑to‑resin, E‑glass with West System 105 / 206 epoxy. Ideally we would utilize coupon tensile tests (ASTM D3039) to confirm if the laminate's strength properties agreed within predictions, validating the CLT model. However, due to time constraints, the team opted to use the vendor's published data.</p>
+        <img src="../images/g12_matsci.jpg" alt="G12mat" style="display: block; margin: 0 auto;">
+        <br>
         <p style="color:#ffffff; margin-left: 20px;"><em>First‑pass hand calculations</em> sized the fins and body tube using the Barrowman method and Euler buckling respectively. With q = 6.6 kPa (Mach 0.92 at 3 700 m) each fin sees 99 lbf normal load, yielding a bending stress of 15 MPa—well below the birch allowable of 34 MPa.  To simplify normal force acted on each fin, we set the following assumptions: air flow is inviscid, composed of an ideal gas, subsonic, and laminar, angle of attack is sufficiently small (≤10°), quasi-static loading is justified since rate of change of aerodynamic forces and angle of attack do not change rapidly, steady-state flight conditions apply at a single instance during steady-angled flight (no significant acceleration or angular velocity change during instance), fins act as thin flat plates and its wall boundaries are smooth, primary aerodynamic loads occur normal to fin surface.</p>
         <pre style="background:#222;color:#ccc;padding:0.5rem; margin-left: 40px;">N<sub>f</sub> = q · A · C<sub>Nα</sub> · α ≈ 440 N</pre>
     
@@ -379,5 +381,6 @@
         <p style="color:#ffffff;text-align:center;font-weight:bold;">TL;DR – Built a 4″ hybrid to 10 k ft spec, scrubbed by desert storm; lessons learned embedded above, next flight scheduled Fall 2025.</p>
         </div>
     </section>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ed68a5d339c24270ad5f04afde69317c"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
