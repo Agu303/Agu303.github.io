@@ -45,7 +45,7 @@
         <ul style="color:#ffffff; font-size:1.3rem;">
             <li><strong>Led a 12‑person sub‑team</strong> through requirements, CAD, FEA, and manufacturing.</li>
             <li>Developing an internal <em>composite design toolbox</em> (Python) for rocket laminate design efficiency</li>
-            <li>Mentored team in SolidWorks, ANSYS Mechanical, Classical Lamination Theory, and Tsai‑Wu failure envelopes.</li>
+            <li>Mentored team in SolidWorks, ANSYS Mechanical, Classical Lamination Theory, and Tsai‑Wu failure envelopes with biweekly meetings detailing progress and milestones.</li>
         </ul>
 
         <br>
@@ -147,6 +147,8 @@
         <!-- tie back to requirements -->
         <p style="color:#ffffff; margin-left: 20px;">Each material choice closed a specific requirement: radio transparency for avionics, manufacturability inside the six‑month window, and safety factor under 256 lbf max thrust.</p>
         <p style="color:#ffffff; margin-left: 20px;"><!-- insert technical trade charts from CDR slides here --></p>
+        <img src ="../images/bom.png" alt="pres" style="display: block; margin: 0 auto; width:50%; height:auto;">
+        <p class="image-caption">Structural Bill of Materials Excel Sheet</p>
 
         <br>
         <br>
@@ -185,7 +187,19 @@
              Material & Component Testing
         ======================================================= -->
         <h2 style="color:#ffffff;">Material &amp; Component Testing</h2>
-        <p style="color:#ffffff; margin-left: 20px;">Moving from the ground-proven 3.34 g (main) and 2.12 g (drogue) to 4.5 g and 4 g lifts chamber pressure by ≈ 35 % and ≈ 90 %, enough to cover altitude, cold-soak, and binding uncertainty while staying well below coupler stress limits.  The pressures produced by 4.5 g/4 g translate to bulkhead forces several times the value of our nylon plastic shear pins, so the pins still fail cleanly without overstressing the airframe.  Redundancy-wise, we loaded 6 g backup charges for both bays; even if a primary mis-fires, the secondary delivers more than the required force to guarantee deployment.</p>
+        <p style="color:#ffffff; margin-left: 20px;">To improve the robustness of our dual-deployment parachute system, we increased the main and drogue charge masses from the previously flight-tested 3.34 g and 2.12 g loads to 4.5 g and 4.0 g respectively. This adjustment was designed to ensure reliable deployment across a range of edge conditions, including ignition at specified high-altitude level, and blackpowder charge performance.
+
+            The updated charges were selected to generate sufficient impulse to guarantee clean failure of the nylon shear pins without overstressing the coupler or bulkhead interfaces. This allowed us to maintain a strong margin of safety while ensuring reliable separation in all expected flight scenarios.
+            
+            Pass/fail criteria for the test were defined as follows:
+            
+            Pass: Both primary charges initiate clean separation within the designed time window, verified by full bay actuation and physical confirmation of shear pin failure without structural damage to surrounding airframe.
+            
+            Fail: Incomplete separation, misfire, or visible structural deformation of the bulkhead or coupler.
+            
+            For redundancy, both the main and drogue bays were preloaded with 6.0 g backup charges. These secondaries were sized to independently achieve successful deployment in the event of a primary failure, preserving recovery capability without exceeding mechanical design limits.
+            
+            This testing approach established a validated force envelope for future flights and demonstrated the importance of integrating system-level design margins, fault tolerance, and practical pass/fail criteria into high-risk operations.</p>
         <br>
         <img src ="../images/rocket_ejection.gif" alt="pres" style="display: block; margin: 0 auto; width:50%; height:auto;">
         <br>
@@ -234,11 +248,11 @@
 
         <h3 style="color:#ffffff;">Torque Specifications</h3>
         
-        <h4 style="color:#ffffff; margin-left: 20px;">1. Central Rod Assembly</h4>
+        <h4 style="color:#ffffff; margin-left: 20px;">1. Central Rod & Bulkhead Assembly</h4>
         <ul style="color:#ffffff; margin-left: 40px;">
             <li><strong>Fasteners:</strong> Eye Nuts (Galvanized Steel)</li>
             <li><strong>Preload Requirement:</strong> Ensure eye nuts are snugly seated against washers and bulkheads</li>
-            <li><strong>Torque Specification:</strong> 702.4 in·lbf (Preload: 30,439.5 lbf)</li>
+            <li><strong>Torque Specification:</strong> 216 ft-lbs</li>
             <li><strong>Assembly Notes:</strong> Use torque wrench with open-end adapter, apply Loctite 271, tighten both ends evenly</li>
         </ul>
 
@@ -246,17 +260,10 @@
         <ul style="color:#ffffff; margin-left: 40px;">
             <li><strong>Fasteners:</strong> Support Wing Nuts (Steel, Black Corrosion-Resistant Coated)</li>
             <li><strong>Preload Requirement:</strong> Hand-tighten to secure bulkheads while allowing manual disassembly</li>
-            <li><strong>Torque Specification:</strong> 22.27 in·lbf (Preload: 2,895.62 lbf)</li>
+            <li><strong>Torque Specification:</strong> 22.27 ft-lbs</li>
             <li><strong>Assembly Notes:</strong> Do not over-tighten, ensure equal compression, apply anti-seize if frequent disassembly expected</li>
         </ul>
 
-        <h4 style="color:#ffffff; margin-left: 20px;">3. Bulkhead Assembly</h4>
-        <ul style="color:#ffffff; margin-left: 40px;">
-            <li><strong>Fasteners:</strong> Bulkhead Wing Nuts (Steel, 3/4"-10)</li>
-            <li><strong>Preload Requirement:</strong> Ensure bulkheads are flush against rods and distribute forces evenly</li>
-            <li><strong>Torque Specification:</strong> 702.4 in·lbf</li>
-            <li><strong>Assembly Notes:</strong> Use torque wrench, apply Loctite 271, check alignment and washer distribution</li>
-        </ul>
 
         <h3 style="color:#ffffff;">Assembly Process & Best Practices</h3>
         <ol style="color:#ffffff; margin-left: 40px;">
@@ -366,6 +373,9 @@
             <li> <strong>ASTM-D2290</strong> - Out-of-plane tensile hoop strength properties for body tubes</li>
             <li> <strong>Single-Lap Joint Test</strong> - Joint test to simulate coupler-body tube shear bonding interactions.  Useful for choosing adhesive type.</li>
             <li> <strong>Hybrid Thrust/Weight considerations</strong> - For our purposes the thrust to weight ratio was roughly under ~10 which wasn't optimal.  According to contrail hybrid motor experts in the competition, a recommend T/W ratio somewhere around 15-20 was best.  This was unfortunately impossible, since our order was missing the 'medium' size nozzle.</li>
+            <li> <strong>Tooling Aid for increased manufacturing efficiency</strong> - Create filament winder with a 3D printed frame and a motor to wind the filament.  This would allow for more efficient manufacturing of the body tubes and, reduce the amount of time spent on the winding process, and allow for tailored mechanical properties of the airframe layers.</li>
+            <li> <strong>DFM</strong> - Decrease size of bulkhhead eye nut to reduce weight, and increase area avaiable for tightening nuts under fast-paced manufacturing scenarios. Galvanized steel lifting eye nut is complete overkill.</li>
+
         </ul>
         <br>
         <img src ="../images/gigem_rocket.JPG" alt="pres" style="display: block; margin: 0 auto; width:40%; height:auto;">

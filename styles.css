@@ -36,7 +36,6 @@ header {
 
 /* Index page specific header */
 .index-header {
-  background-image: url('./images/plane_flighttest.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -45,6 +44,17 @@ header {
   display: flex;
   flex-direction: column;
   padding: 40px 20px;
+  overflow: hidden;
+}
+
+#bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
 
 .sae-header {
@@ -132,13 +142,15 @@ header {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 1;
+  z-index: 2;
 }
 
 /* Ensure header content stays above the overlay */
-.index-header > * {
+.index-header > a,
+.index-header > nav,
+.index-header > div {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .sae-header .logo-link {
