@@ -18,7 +18,7 @@ body {
   background-color: #1a1818;       /*  gray background */
   color: #333;                      /* Dark text color for better readability */
   line-height: 1.6;                 /* Adds some space between lines of text */
-  padding: 20px;
+
 }
 
 /* Header styles */
@@ -282,6 +282,22 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+
+/* Secret button styles */
+.secret-button {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    color: #1a1818;
+    text-decoration: none;
+    font-size: 6px;
+    z-index: 9999;
+}
+
+.secret-button:hover {
+    color: #ffffff;
 }
 
 /* Responsive Design - Make it look good on smaller screens */
